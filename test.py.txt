@@ -1,2 +1,212 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apex</title>
+<link rel="icon" href="logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--h:#111;--text:#333;--muted:#777;--border:#e5e5e5;--hover:#f5f5f5;
+  --accent:#049640;--accent-dark:#037a33}   /* зелёный взят с логотипа */
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:var(--bg);color:var(--text);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+.wrap{width:100%;max-width:560px;margin:0 auto;padding:0 20px}
+header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px}
+.logo{display:block;line-height:0}
+.logo img{height:40px;width:auto;display:block}
+.langs{display:flex;gap:4px}
+.langs button{border:0;background:none;padding:6px 8px;border-radius:8px;font:inherit;font-size:14px;color:var(--muted);cursor:pointer}
+.langs button:hover{background:var(--hover)}
+.langs button.on{color:var(--h);font-weight:600;box-shadow:inset 0 -2px 0 var(--accent);border-radius:8px 8px 0 0}
+main{flex:1;padding-top:24px;padding-bottom:40px}
+h1{margin:0 0 8px;font-size:28px;line-height:1.2;letter-spacing:-.02em;color:var(--h)}
+.sub{margin:0 0 24px;color:var(--text)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chip{border:1px solid var(--border);background:var(--bg);color:var(--text);padding:9px 16px;border-radius:999px;font:inherit;font-size:15px;cursor:pointer}
+.chip:hover{background:var(--hover)}
+.chip.on{background:var(--hover);border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);color:var(--h);font-weight:600}
+input[type=search]{width:100%;padding:14px 16px;border:1px solid var(--border);border-radius:12px;font:inherit;font-size:16px;color:var(--h);background:var(--bg)}
+input[type=search]:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.list{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.item{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--h);font-weight:500}
+.item:hover{background:var(--hover)}
+.item img{width:44px;height:44px;border-radius:8px;object-fit:cover}
+.item small{margin-left:auto;color:var(--muted);font-weight:400}
+.hint{color:var(--muted);margin:8px 0}
+.back{display:inline-block;margin-bottom:20px;color:var(--muted);text-decoration:none;font-size:15px}
+.back:hover{color:var(--accent-dark)}
+.venue-img{width:88px;height:88px;border-radius:16px;object-fit:cover;margin-bottom:16px;border:1px solid var(--border)}
+.btn{display:block;margin:10px 0;padding:15px;border-radius:12px;background:var(--h);color:#fff;text-align:center;text-decoration:none;font-weight:600}
+.btn{border-bottom:3px solid var(--accent)}
+.btn:hover{background:#333}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;padding-top:16px;padding-bottom:16px}
+footer a{color:var(--muted)}
+footer a:hover{color:var(--accent-dark)}
+footer .copy{margin-left:auto}
+</style>
+</head>
+<body>
+<header><div class="wrap" id="top"></div></header>
+<main><div class="wrap" id="page"></div></main>
+<footer><div class="wrap" id="foot"></div></footer>
 
+<script>
+/* ========== 1. ДАННЫЕ ==========
+   Пока это обычные массивы. На этапе с базой (Supabase) эти же четыре сущности
+   станут таблицами: cities, platforms, venues, venue_links. Структуру менять не придётся. */
+const DATA = {
+  cities: [
+    { id: 'bishkek', names: { ru: 'Бишкек', ky: 'Бишкек', en: 'Bishkek' } },
+    { id: 'karakol', names: { ru: 'Каракол', ky: 'Каракол', en: 'Karakol' } },
+    { id: 'osh',     names: { ru: 'Ош',      ky: 'Ош',      en: 'Osh' } }
+  ],
+  // порядок в массиве = порядок кнопок на странице заведения
+  platforms: [
+    { id: '2gis',      name: '2GIS' },
+    { id: 'google',    name: 'Google Maps' },
+    { id: 'yandex',    name: 'Яндекс Карты', names: { en: 'Yandex Maps', ky: 'Яндекс Карталар' } },
+    { id: 'instagram', name: 'Instagram' }
+  ],
+  venues: [
+    { slug: 'navat-bishkek', name: 'Navat', city: 'bishkek', logo: null, active: true,
+      links: { '2gis': 'https://2gis.kg/', google: 'https://maps.google.com/', instagram: 'https://www.instagram.com/' } },
+    { slug: 'coffee-point', name: 'Coffee Point', city: 'bishkek', logo: null, active: true,
+      links: { '2gis': 'https://2gis.kg/' } },
+    { slug: 'ala-too-cafe', name: 'Ala-Too Cafe', city: 'karakol', logo: null, active: true,
+      links: { google: 'https://maps.google.com/', yandex: 'https://yandex.ru/maps/' } },
+    { slug: 'osh-grill', name: 'Osh Grill', city: 'osh', logo: null, active: true,
+      links: { yandex: 'https://yandex.ru/maps/', instagram: 'https://www.instagram.com/' } },
+    { slug: 'hidden-place', name: 'Hidden Place', city: 'osh', logo: null, active: false,
+      links: { '2gis': 'https://2gis.kg/' } }   // скрытое заведение: на сайте не видно
+  ]
+};
 
+// Ссылки на контакты заказчик пришлёт отдельно, подставь их сюда
+const CONTACTS = { whatsapp: 'https://wa.me/', telegram: 'https://t.me/' };
+
+/* ========== 2. ПЕРЕВОДЫ ========== */
+const UI = {
+  ru: { greet: 'Спасибо, что выбираете нас!', sub: 'Выберите город и заведение, чтобы поделиться своим мнением',
+        search: 'Найти заведение', hint: 'Выберите город или начните вводить название заведения',
+        none: 'Ничего не найдено', venueText: 'Нам важно ваше мнение. Выберите удобную платформу, чтобы поделиться впечатлениями',
+        back: 'Назад', notFound: 'Заведение не найдено', noLinks: 'Для этого заведения ещё не добавлены ссылки',
+        rights: 'Все права защищены' },
+  ky: { greet: 'Бизди тандаганыңыз үчүн рахмат!', sub: 'Пикириңиз менен бөлүшүү үчүн шаарды жана мекемени тандаңыз',
+        search: 'Мекемени издөө', hint: 'Шаарды тандаңыз же мекеменин атын жазыңыз',
+        none: 'Эч нерсе табылган жок', venueText: 'Сиздин пикириңиз биз үчүн маанилүү. Таасирлериңиз менен бөлүшүү үчүн ыңгайлуу платформаны тандаңыз',
+        back: 'Артка', notFound: 'Мекеме табылган жок', noLinks: 'Бул мекеме үчүн шилтемелер азырынча кошула элек',
+        rights: 'Бардык укуктар корголгон' },
+  en: { greet: 'Thank you for choosing us!', sub: 'Choose a city and a venue to share your opinion',
+        search: 'Search for a venue', hint: 'Choose a city or start typing a venue name',
+        none: 'Nothing found', venueText: 'Your opinion matters to us. Choose a platform to share your experience',
+        back: 'Back', notFound: 'Venue not found', noLinks: 'No links have been added for this venue yet',
+        rights: 'All rights reserved' }
+};
+
+/* ========== 3. СОСТОЯНИЕ И ПОМОЩНИКИ ========== */
+let lang = 'ru';
+try { lang = localStorage.getItem('apex-lang') || 'ru'; } catch (e) {}
+if (!UI[lang]) lang = 'ru';
+
+let city = '';   // выбранный город ('' = не выбран)
+let query = '';  // текст в строке поиска
+
+const t = key => UI[lang][key];
+const cityName = id => { const c = DATA.cities.find(c => c.id === id); return c ? (c.names[lang] || c.names.ru) : ''; };
+const venueName = v => (v.names && v.names[lang]) || v.name;   // название как в базе, если нет перевода
+const platformName = p => (p.names && p.names[lang]) || p.name;
+
+// Создаёт элемент без innerHTML: текст вставляется как текст, подставить в него код нельзя
+function el(tag, attrs = {}, ...kids) {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'class') n.className = v;
+    else if (k.startsWith('on')) n.addEventListener(k.slice(2), v);
+    else n.setAttribute(k, v);
+  }
+  n.append(...kids.flat().filter(Boolean));
+  return n;
+}
+
+// Защита: пускаем только ссылки https://
+function isSafeUrl(u) {
+  try { return new URL(u).protocol === 'https:'; } catch (e) { return false; }
+}
+
+/* ========== 4. СТРАНИЦЫ ========== */
+function homePage() {
+  const list = el('div', { class: 'list' });
+
+  function fillList() {
+    list.replaceChildren();
+    const term = query.trim().toLowerCase();
+    if (!city && !term) { list.append(el('p', { class: 'hint' }, t('hint'))); return; }   // список не показываем заранее
+    const found = DATA.venues.filter(v =>
+      v.active && (!city || v.city === city) && (!term || venueName(v).toLowerCase().includes(term)));
+    if (!found.length) { list.append(el('p', { class: 'hint' }, t('none'))); return; }
+    for (const v of found) {
+      list.append(el('a', { class: 'item', href: '#/r/' + v.slug },
+        v.logo ? el('img', { src: v.logo, alt: '', onerror: e => e.target.remove() }) : null,   // нет фото: блока нет
+        el('span', {}, venueName(v)),
+        city ? null : el('small', {}, cityName(v.city))));
+    }
+  }
+
+  const input = el('input', { type: 'search', placeholder: t('search'), 'aria-label': t('search'),
+    autocomplete: 'off', value: query, oninput: e => { query = e.target.value; fillList(); } });
+
+  const chips = el('div', { class: 'chips' }, DATA.cities.map(c =>
+    el('button', { type: 'button', class: 'chip' + (city === c.id ? ' on' : ''),
+      onclick: () => { city = city === c.id ? '' : c.id; render(); } }, c.names[lang] || c.names.ru)));
+
+  fillList();
+  return [el('h1', {}, t('greet')), el('p', { class: 'sub' }, t('sub')), chips, input, list];
+}
+
+function venuePage(slug) {
+  const back = el('a', { class: 'back', href: '#/' }, '← ' + t('back'));
+  const v = DATA.venues.find(v => v.slug === slug && v.active);
+  if (!v) return [back, el('h1', {}, t('notFound'))];
+
+  // кнопка есть только там, где есть ссылка и она безопасна
+  const buttons = DATA.platforms
+    .filter(p => v.links[p.id] && isSafeUrl(v.links[p.id]))
+    .map(p => el('a', { class: 'btn', href: v.links[p.id], target: '_blank', rel: 'noopener noreferrer' }, platformName(p)));
+
+  return [back,
+    v.logo ? el('img', { class: 'venue-img', src: v.logo, alt: '', onerror: e => e.target.remove() }) : null,
+    el('h1', {}, venueName(v)),
+    el('p', { class: 'sub' }, t('venueText')),
+    ...(buttons.length ? buttons : [el('p', { class: 'hint' }, t('noLinks'))])];
+}
+
+/* ========== 5. ШАПКА, ПОДВАЛ, МАРШРУТЫ ========== */
+function render() {
+  document.documentElement.lang = lang;
+
+  document.getElementById('top').replaceChildren(
+    el('a', { class: 'logo', href: '#/', 'aria-label': 'Apex' }, el('img', { src: 'logo.jpg', alt: 'Apex' })),
+    el('div', { class: 'langs' }, Object.keys(UI).map(l =>
+      el('button', { type: 'button', class: l === lang ? 'on' : '',
+        onclick: () => { lang = l; try { localStorage.setItem('apex-lang', l); } catch (e) {} render(); } }, l.toUpperCase()))));
+
+  const m = location.hash.match(/^#\/r\/([\w-]+)$/);   // адрес вида #/r/navat-bishkek
+  document.getElementById('page').replaceChildren(...(m ? venuePage(m[1]) : homePage()));
+
+  document.getElementById('foot').replaceChildren(
+    el('a', { href: CONTACTS.whatsapp, target: '_blank', rel: 'noopener noreferrer' }, 'WhatsApp'),
+    el('a', { href: CONTACTS.telegram, target: '_blank', rel: 'noopener noreferrer' }, 'Telegram'),
+    el('span', { class: 'copy' }, '© ' + new Date().getFullYear() + ' Apex. ' + t('rights')));
+}
+
+window.addEventListener('hashchange', render);
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Apex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F6F3;--surface:#fff;--ink:#0F1C15;--text:#33423A;--muted:#66756C;--line:#DCE5DF;--accent:#049640;--accent-ink:#036B2D;--tint:#E1F2E7;--on-ink:#fff;--star-off:#C9D6CE;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C1410;--surface:#131E18;--ink:#EEF5F0;--text:#C2CFC7;--muted:#8A9A90;--line:#243329;--accent:#2BBF68;--accent-ink:#4AD686;--tint:#12301F;--on-ink:#0C1410;--star-off:#2C3D32;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0C1410;--surface:#131E18;--ink:#EEF5F0;--text:#C2CFC7;--muted:#8A9A90;--line:#243329;--accent:#2BBF68;--accent-ink:#4AD686;--tint:#12301F;--on-ink:#0C1410;--star-off:#2C3D32;color-scheme:dark}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;min-height:100%;display:flex;flex-direction:column;background:var(--bg);color:var(--text);
+  font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{width:100%;max-width:540px;margin:0 auto;padding:0 20px}
+header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:20px;padding-bottom:12px}
+
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:800;font-size:22px;letter-spacing:-.03em}
+.logo img{height:38px;width:auto;display:block}
+.logo i{width:34px;height:34px;border-radius:10px;background:var(--accent);display:grid;place-items:center;color:#fff;font-style:normal;font-size:19px}
+.langs{display:flex;padding:3px;background:var(--surface);border:1px solid var(--line);border-radius:999px}
+.langs button{border:0;background:none;padding:6px 11px;border-radius:999px;font:inherit;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer}
+.langs button.on{background:var(--ink);color:var(--on-ink)}
+
+main{flex:1;padding-top:28px;padding-bottom:44px}
+.stars{display:flex;gap:5px;margin-bottom:16px;font-size:26px;line-height:1;color:#FFD24A}
+.stars span{animation:lit .5s both;animation-delay:calc(var(--i)*.14s + .15s)}
+@keyframes lit{from{color:rgba(255,255,255,.35);transform:scale(.7)}to{color:#FFD24A;transform:none}}
+h1{margin:0 0 10px;font-size:32px;line-height:1.1;letter-spacing:-.035em;font-weight:800;color:var(--ink);text-wrap:balance}
+.sub{margin:0 0 26px;color:var(--text);max-width:44ch}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--text);padding:10px 18px;border-radius:12px;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.chip:hover{border-color:var(--accent)}
+.chip::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:8px}
+.chip.on{background:var(--c);border-color:var(--c);color:#fff}
+.chip.on::before{background:#fff}
+.hero{position:relative;overflow:hidden;border-radius:28px;padding:26px 22px 26px;margin-bottom:22px;background:linear-gradient(150deg,#07AD48 0%,#037a33 58%,#025a28 100%)}
+.hero::before{content:"";position:absolute;width:160px;height:160px;border-radius:50%;right:-48px;bottom:-78px;background:#FFD24A}
+.hero::after{content:"";position:absolute;width:110px;height:110px;border-radius:50%;right:-30px;top:-40px;background:rgba(255,255,255,.14)}
+.hero>*{position:relative;z-index:1}
+.hero h1{color:#fff;font-size:34px;margin-bottom:12px}
+.hero .sub{color:rgba(255,255,255,.9);margin:0}
+.tiles{display:flex;gap:12px;margin-top:24px}
+.tiles span{width:54px;height:54px;border-radius:17px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:20px;box-shadow:0 8px 18px rgba(0,0,0,.24);transform:rotate(var(--r))}
+input[type=search]{width:100%;padding:15px 16px;border:1px solid var(--line);border-radius:14px;font:inherit;font-size:16px;color:var(--ink);background:var(--surface)}
+input[type=search]::placeholder{color:var(--muted)}
+input[type=search]:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+
+.list{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+.item,.btn{display:flex;align-items:center;gap:14px;padding:12px 16px 12px 12px;background:var(--surface);border:1px solid var(--line);border-radius:18px;text-decoration:none;color:var(--ink);font-weight:700}
+.item:hover,.btn:hover{border-color:var(--accent)}
+.item:active,.btn:active{transform:scale(.99)}
+.item::after,.btn::after{content:"";width:8px;height:8px;margin-left:auto;flex:none;border-top:2px solid var(--muted);border-right:2px solid var(--muted);transform:rotate(45deg)}
+.item small{margin-left:auto;color:var(--muted);font-weight:500;font-size:14px}
+.item small+*{display:none}
+.item:has(small)::after{margin-left:2px}
+.mono{width:46px;height:46px;flex:none;border-radius:13px;background:var(--tint);color:var(--accent-ink);display:grid;place-items:center;font-size:19px;font-weight:800;overflow:hidden}
+.mono img{width:100%;height:100%;object-fit:cover}
+.hint{color:var(--muted);margin:8px 2px}
+
+.back{display:inline-flex;align-items:center;gap:8px;margin-bottom:24px;padding:6px 0;color:var(--muted);text-decoration:none;font-size:15px;font-weight:600}
+.back::before{content:"";width:8px;height:8px;border-left:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg)}
+.back:hover{color:var(--accent-ink)}
+.hero-mono{width:76px;height:76px;border-radius:24px;font-size:32px;margin-bottom:18px}
+.btns{display:flex;flex-direction:column;gap:10px}
+.btn{padding:14px 18px 14px 14px;font-size:17px}
+.pf{width:40px;height:40px;flex:none;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:16px}
+
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding-top:18px;padding-bottom:20px}
+footer a{color:var(--muted);font-weight:600;text-decoration:none}
+footer a:hover{color:var(--accent-ink)}
+footer .copy{margin-left:auto}
+@media (prefers-reduced-motion:reduce){.stars span{animation:none}.item:active,.btn:active{transform:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap" id="top"></div></header>
+<main><div class="wrap" id="page"></div></main>
+<footer><div class="wrap" id="foot"></div></footer>
+
+<script>
+/* ========== 1. ДАННЫЕ ========== */
+const DATA = {
+  cities: [
+    { id: 'bishkek', color: '#E8590C', names: { ru: 'Бишкек', ky: 'Бишкек', en: 'Bishkek' } },
+    { id: 'karakol', color: '#2F6FED', names: { ru: 'Каракол', ky: 'Каракол', en: 'Karakol' } },
+    { id: 'osh', color: '#C2255C', names: { ru: 'Ош',      ky: 'Ош',      en: 'Osh' } }
+  ],
+  platforms: [
+    { id: '2gis',      name: '2GIS', glyph: '2', color: '#19AA1E' },
+    { id: 'google',    name: 'Google Maps', glyph: 'G', color: '#4285F4' },
+    { id: 'yandex',    name: 'Яндекс Карты', names: { en: 'Yandex Maps', ky: 'Яндекс Карталар' }, glyph: 'Я', color: '#FC3F1D' },
+    { id: 'instagram', name: 'Instagram', glyph: 'In', color: '#D6249F' }
+  ],
+  venues: [
+    { slug: 'navat-bishkek', name: 'Navat', city: 'bishkek', logo: null, active: true,
+      links: { '2gis': 'https://2gis.kg/', google: 'https://maps.google.com/', instagram: 'https://www.instagram.com/' } },
+    { slug: 'coffee-point', name: 'Coffee Point', city: 'bishkek', logo: null, active: true,
+      links: { '2gis': 'https://2gis.kg/' } },
+    { slug: 'ala-too-cafe', name: 'Ala-Too Cafe', city: 'karakol', logo: null, active: true,
+      links: { google: 'https://maps.google.com/', yandex: 'https://yandex.ru/maps/' } },
+    { slug: 'osh-grill', name: 'Osh Grill', city: 'osh', logo: null, active: true,
+      links: { yandex: 'https://yandex.ru/maps/', instagram: 'https://www.instagram.com/' } },
+    { slug: 'hidden-place', name: 'Hidden Place', city: 'osh', logo: null, active: false,
+      links: { '2gis': 'https://2gis.kg/' } }
+  ]
+};
+const CONTACTS = { whatsapp: 'https://wa.me/', telegram: 'https://t.me/' };
+
+/* ========== 2. ПЕРЕВОДЫ ========== */
+const UI = {
+  ru: { greet: 'Спасибо, что выбираете нас!', sub: 'Выберите город и заведение, чтобы поделиться своим мнением',
+        search: 'Найти заведение', hint: 'Выберите город или начните вводить название заведения',
+        none: 'Ничего не найдено', venueText: 'Нам важно ваше мнение. Выберите удобную платформу, чтобы поделиться впечатлениями',
+        back: 'Назад', notFound: 'Заведение не найдено', noLinks: 'Для этого заведения ещё не добавлены ссылки',
+        rights: 'Все права защищены' },
+  ky: { greet: 'Бизди тандаганыңыз үчүн рахмат!', sub: 'Пикириңиз менен бөлүшүү үчүн шаарды жана мекемени тандаңыз',
+        search: 'Мекемени издөө', hint: 'Шаарды тандаңыз же мекеменин атын жазыңыз',
+        none: 'Эч нерсе табылган жок', venueText: 'Сиздин пикириңиз биз үчүн маанилүү. Таасирлериңиз менен бөлүшүү үчүн ыңгайлуу платформаны тандаңыз',
+        back: 'Артка', notFound: 'Мекеме табылган жок', noLinks: 'Бул мекеме үчүн шилтемелер азырынча кошула элек',
+        rights: 'Бардык укуктар корголгон' },
+  en: { greet: 'Thank you for choosing us!', sub: 'Choose a city and a venue to share your opinion',
+        search: 'Search for a venue', hint: 'Choose a city or start typing a venue name',
+        none: 'Nothing found', venueText: 'Your opinion matters to us. Choose a platform to share your experience',
+        back: 'Back', notFound: 'Venue not found', noLinks: 'No links have been added for this venue yet',
+        rights: 'All rights reserved' }
+};
+
+/* ========== 3. СОСТОЯНИЕ И ПОМОЩНИКИ ========== */
+let lang = 'ru';
+try { lang = localStorage.getItem('apex-lang') || 'ru'; } catch (e) {}
+if (!UI[lang]) lang = 'ru';
+let city = '', query = '';
+
+const t = key => UI[lang][key];
+const cityName = id => { const c = DATA.cities.find(c => c.id === id); return c ? (c.names[lang] || c.names.ru) : ''; };
+const venueName = v => (v.names && v.names[lang]) || v.name;
+const platformName = p => (p.names && p.names[lang]) || p.name;
+const initial = v => venueName(v).trim().charAt(0).toUpperCase();
+
+function el(tag, attrs = {}, ...kids) {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'class') n.className = v;
+    else if (k.startsWith('on')) n.addEventListener(k.slice(2), v);
+    else n.setAttribute(k, v);
+  }
+  n.append(...kids.flat().filter(Boolean));
+  return n;
+}
+function isSafeUrl(u) { try { return new URL(u).protocol === 'https:'; } catch (e) { return false; } }
+
+// плитка заведения: логотип, а если его нет или он не загрузился, первая буква названия
+function mono(v, extra) {
+  const cc = (DATA.cities.find(c => c.id === v.city) || {}).color;
+  const box = el('span', { class: 'mono' + (extra ? ' ' + extra : ''), 'aria-hidden': 'true',
+    style: cc ? 'background:' + cc + ';color:#fff' : '' }, initial(v));
+  if (v.logo) box.replaceChildren(el('img', { src: v.logo, alt: '', onerror: e => box.replaceChildren(initial(v)) }));
+  return box;
+}
+
+/* ========== 4. СТРАНИЦЫ ========== */
+function homePage() {
+  const list = el('div', { class: 'list' });
+
+  function fillList() {
+    list.replaceChildren();
+    const term = query.trim().toLowerCase();
+    if (!city && !term) { list.append(el('p', { class: 'hint' }, t('hint'))); return; }
+    const found = DATA.venues.filter(v =>
+      v.active && (!city || v.city === city) && (!term || venueName(v).toLowerCase().includes(term)));
+    if (!found.length) { list.append(el('p', { class: 'hint' }, t('none'))); return; }
+    for (const v of found) {
+      list.append(el('a', { class: 'item', href: '#' + v.slug },
+        mono(v), el('span', {}, venueName(v)),
+        city ? null : el('small', {}, cityName(v.city))));
+    }
+  }
+
+  const input = el('input', { type: 'search', placeholder: t('search'), 'aria-label': t('search'),
+    autocomplete: 'off', value: query, oninput: e => { query = e.target.value; fillList(); } });
+
+  const chips = el('div', { class: 'chips' }, DATA.cities.map(c =>
+    el('button', { type: 'button', class: 'chip' + (city === c.id ? ' on' : ''), 'aria-pressed': String(city === c.id), style: '--c:' + c.color,
+      onclick: () => { city = city === c.id ? '' : c.id; render(); } }, c.names[lang] || c.names.ru)));
+
+  fillList();
+  const stars = el('div', { class: 'stars', 'aria-hidden': 'true' },
+    [0, 1, 2, 3, 4].map(i => el('span', { style: '--i:' + i }, '★')));
+  const rot = ['-7deg', '5deg', '-3deg', '8deg'];
+  const tiles = el('div', { class: 'tiles', 'aria-hidden': 'true' }, DATA.platforms.map((p, i) =>
+    el('span', { style: 'background:' + p.color + ';--r:' + rot[i % 4] }, p.glyph)));
+  const hero = el('section', { class: 'hero' }, stars, el('h1', {}, t('greet')), el('p', { class: 'sub' }, t('sub')), tiles);
+  return [hero, chips, input, list];
+}
+
+function venuePage(slug) {
+  const back = el('a', { class: 'back', href: '#' }, t('back'));
+  const v = DATA.venues.find(v => v.slug === slug && v.active);
+  if (!v) return [back, el('h1', {}, t('notFound'))];
+
+  const buttons = DATA.platforms
+    .filter(p => v.links[p.id] && isSafeUrl(v.links[p.id]))
+    .map(p => el('a', { class: 'btn', href: v.links[p.id], target: '_blank', rel: 'noopener noreferrer' },
+      el('span', { class: 'pf', style: 'background:' + p.color, 'aria-hidden': 'true' }, p.glyph),
+      platformName(p)));
+
+  return [back, mono(v, 'hero-mono'),
+    el('h1', {}, venueName(v)),
+    el('p', { class: 'sub' }, t('venueText')),
+    buttons.length ? el('div', { class: 'btns' }, buttons) : el('p', { class: 'hint' }, t('noLinks'))];
+}
+
+/* ========== 5. ШАПКА, ПОДВАЛ, МАРШРУТЫ ========== */
+function logoEl() {
+  const mark = el('i', { 'aria-hidden': 'true' }, '★');
+  const a = el('a', { class: 'logo', href: '#', 'aria-label': 'Apex' }, mark, 'Apex');
+  // если рядом лежит logo.jpg, показываем его, иначе остаётся знак со звездой
+  const img = new Image(); img.alt = 'Apex';
+  img.onload = () => a.replaceChildren(img);
+  img.src = 'logo.jpg';
+  return a;
+}
+
+function render() {
+  document.documentElement.lang = lang;
+
+  document.getElementById('top').replaceChildren(
+    logoEl(),
+    el('div', { class: 'langs' }, Object.keys(UI).map(l =>
+      el('button', { type: 'button', class: l === lang ? 'on' : '',
+        onclick: () => { lang = l; try { localStorage.setItem('apex-lang', l); } catch (e) {} render(); } }, l.toUpperCase()))));
+
+  const m = location.hash.match(/^#(?:\/r\/)?([\w-]+)$/);   // #navat-bishkek и старый вид #/r/navat-bishkek
+  document.getElementById('page').replaceChildren(...(m ? venuePage(m[1]) : homePage()));
+
+  document.getElementById('foot').replaceChildren(
+    el('a', { href: CONTACTS.whatsapp, target: '_blank', rel: 'noopener noreferrer' }, 'WhatsApp'),
+    el('a', { href: CONTACTS.telegram, target: '_blank', rel: 'noopener noreferrer' }, 'Telegram'),
+    el('span', { class: 'copy' }, '© ' + new Date().getFullYear() + ' Apex. ' + t('rights')));
+}
+
+window.addEventListener('hashchange', render);
+render();
+</script>
+</body>
+</html>

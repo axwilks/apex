@@ -252,3 +252,31 @@ render();
 </script>
 </body>
 </html>
+
+
+create table countries (id uuid primary key default gen_random_uuid(), name_ru text not null, name_ky text, name_en text, sort int default 0);
+create table cities (id uuid primary key default gen_random_uuid(), country_id uuid references countries on delete restrict, name_ru text not null, name_ky text, name_en text, sort int default 0);
+create table platforms (id text primary key, name text not null, domains text[] not null, sort int default 0);
+create table venues (id uuid primary key default gen_random_uuid(), slug text unique not null check (slug ~ '^[a-z0-9-]+$'), name text not null, city_id uuid references cities, logo_url text, active boolean default true, sort int default 0, created_at timestamptz default now());
+create table venue_links (venue_id uuid references venues on delete cascade, platform_id text references platforms, url text not null check (url like 'https://%'), enabled boolean default true, primary key (venue_id, platform_id));
+
+do $$ declare t text; begin
+  foreach t in array array['countries','cities','platforms','venues','venue_links'] loop
+    execute format('alter table %I enable row level security', t);
+    execute format('create policy "admin all" on %I for all to authenticated using (true) with check (true)', t);
+  end loop;
+end $$;
+create policy "read" on countries for select using (true);
+create policy "read" on cities for select using (true);
+create policy "read" on platforms for select using (true);
+create policy "read" on venues for select using (active);
+create policy "read" on venue_links for select using (enabled and exists (select 1 from venues v where v.id = venue_id and v.active));
+
+insert into countries (name_ru, name_ky, name_en) values ('Кыргызстан', 'Кыргызстан', 'Kyrgyzstan');
+insert into cities (country_id, name_ru, name_ky, name_en, sort)
+  select c.id, v.* from countries c, (values ('Бишкек','Бишкек','Bishkek',1), ('Каракол','Каракол','Karakol',2), ('Ош','Ош','Osh',3)) v;
+insert into platforms (id, name, domains, sort) values
+  ('2gis', '2GIS', '{2gis.kg,2gis.com,2gis.ru}', 1),
+  ('google', 'Google Maps', '{google.com,goo.gl,g.page}', 2),
+  ('yandex', 'Яндекс Карты', '{yandex.ru,yandex.kg,yandex.com}', 3),
+  ('instagram', 'Instagram', '{instagram.com}', 4);

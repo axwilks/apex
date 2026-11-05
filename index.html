@@ -6,78 +6,108 @@
 <title>Apex</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#F2F6F3;--surface:#fff;--ink:#0F1C15;--text:#33423A;--muted:#66756C;--line:#DCE5DF;--accent:#049640;--accent-ink:#036B2D;--tint:#E1F2E7;--on-ink:#fff;--star-off:#C9D6CE;
-  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C1410;--surface:#131E18;--ink:#EEF5F0;--text:#C2CFC7;--muted:#8A9A90;--line:#243329;--accent:#2BBF68;--accent-ink:#4AD686;--tint:#12301F;--on-ink:#0C1410;--star-off:#2C3D32;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0C1410;--surface:#131E18;--ink:#EEF5F0;--text:#C2CFC7;--muted:#8A9A90;--line:#243329;--accent:#2BBF68;--accent-ink:#4AD686;--tint:#12301F;--on-ink:#0C1410;--star-off:#2C3D32;color-scheme:dark}
+:root{--bg:#FFFFFF;--h:#111111;--text:#333333;--muted:#777777;--border:#E5E5E5;--hover:#F5F5F5;
+  color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;min-height:100%;display:flex;flex-direction:column;background:var(--bg);color:var(--text);
-  font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
-.wrap{width:100%;max-width:540px;margin:0 auto;padding:0 20px}
-header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:20px;padding-bottom:12px}
-
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:800;font-size:22px;letter-spacing:-.03em}
-.logo img{height:38px;width:auto;display:block}
-.logo i{width:34px;height:34px;border-radius:10px;background:var(--accent);display:grid;place-items:center;color:#fff;font-style:normal;font-size:19px}
-.langs{display:flex;padding:3px;background:var(--surface);border:1px solid var(--line);border-radius:999px}
-.langs button{border:0;background:none;padding:6px 11px;border-radius:999px;font:inherit;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer}
-.langs button.on{background:var(--ink);color:var(--on-ink)}
-
-main{flex:1;padding-top:28px;padding-bottom:44px}
-.stars{display:flex;gap:5px;margin-bottom:16px;font-size:26px;line-height:1;color:#FFD24A}
-.stars span{animation:lit .5s both;animation-delay:calc(var(--i)*.14s + .15s)}
-@keyframes lit{from{color:rgba(255,255,255,.35);transform:scale(.7)}to{color:#FFD24A;transform:none}}
-h1{margin:0 0 10px;font-size:32px;line-height:1.1;letter-spacing:-.035em;font-weight:800;color:var(--ink);text-wrap:balance}
-.sub{margin:0 0 26px;color:var(--text);max-width:44ch}
-
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{width:100%;max-width:560px;margin:0 auto;padding:0 20px}
+header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px}
+.logo{display:block;line-height:0}
+.logo img{height:44px;width:auto;display:block}
+.langs{display:flex;gap:2px}
+.langs button{border:0;background:none;padding:8px 10px;border-radius:8px;font:inherit;font-size:14px;color:var(--muted);cursor:pointer}
+.langs button:hover{background:var(--hover)}
+.langs button.on{color:var(--h);font-weight:600}
+main{flex:1;padding-top:20px;padding-bottom:44px}
+h1{margin:0 0 10px;font-size:28px;line-height:1.2;letter-spacing:-.02em;font-weight:700;color:var(--h);text-wrap:balance}
+.sub{margin:0 0 28px;color:var(--text);max-width:44ch}
+.banner{display:block;width:100%;aspect-ratio:5/2;object-fit:cover;object-position:50% 62%;border-radius:16px;border:1px solid var(--border);margin-bottom:24px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
-.chip{border:1px solid var(--line);background:var(--surface);color:var(--text);padding:10px 18px;border-radius:12px;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
-.chip:hover{border-color:var(--accent)}
-.chip::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:8px}
-.chip.on{background:var(--c);border-color:var(--c);color:#fff}
-.chip.on::before{background:#fff}
-.hero{position:relative;overflow:hidden;border-radius:28px;padding:26px 22px 26px;margin-bottom:22px;background:linear-gradient(150deg,#07AD48 0%,#037a33 58%,#025a28 100%)}
-.hero::before{content:"";position:absolute;width:160px;height:160px;border-radius:50%;right:-48px;bottom:-78px;background:#FFD24A}
-.hero::after{content:"";position:absolute;width:110px;height:110px;border-radius:50%;right:-30px;top:-40px;background:rgba(255,255,255,.14)}
-.hero>*{position:relative;z-index:1}
-.hero h1{color:#fff;font-size:34px;margin-bottom:12px}
-.hero .sub{color:rgba(255,255,255,.9);margin:0}
-.tiles{display:flex;gap:12px;margin-top:24px}
-.tiles span{width:54px;height:54px;border-radius:17px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:20px;box-shadow:0 8px 18px rgba(0,0,0,.24);transform:rotate(var(--r))}
-input[type=search]{width:100%;padding:15px 16px;border:1px solid var(--line);border-radius:14px;font:inherit;font-size:16px;color:var(--ink);background:var(--surface)}
+.chip{border:1px solid var(--border);background:var(--bg);color:var(--text);padding:10px 18px;border-radius:999px;font:inherit;font-size:15px;cursor:pointer}
+.chip:hover{background:var(--hover)}
+.chip.on{background:var(--h);border-color:var(--h);color:#fff;font-weight:500}
+input[type=search]{width:100%;padding:14px 16px;border:1px solid var(--border);border-radius:12px;font:inherit;font-size:16px;color:var(--h);background:var(--bg)}
 input[type=search]::placeholder{color:var(--muted)}
-input[type=search]:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
-
-.list{margin-top:14px;display:flex;flex-direction:column;gap:8px}
-.item,.btn{display:flex;align-items:center;gap:14px;padding:12px 16px 12px 12px;background:var(--surface);border:1px solid var(--line);border-radius:18px;text-decoration:none;color:var(--ink);font-weight:700}
-.item:hover,.btn:hover{border-color:var(--accent)}
-.item:active,.btn:active{transform:scale(.99)}
-.item::after,.btn::after{content:"";width:8px;height:8px;margin-left:auto;flex:none;border-top:2px solid var(--muted);border-right:2px solid var(--muted);transform:rotate(45deg)}
-.item small{margin-left:auto;color:var(--muted);font-weight:500;font-size:14px}
-.item small+*{display:none}
-.item:has(small)::after{margin-left:2px}
-.mono{width:46px;height:46px;flex:none;border-radius:13px;background:var(--tint);color:var(--accent-ink);display:grid;place-items:center;font-size:19px;font-weight:800;overflow:hidden}
+input[type=search]:focus{outline:2px solid var(--h);outline-offset:1px;border-color:var(--h)}
+.list{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.item{display:flex;align-items:center;gap:14px;padding:12px 16px 12px 12px;border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--h);font-weight:500}
+.item:hover{background:var(--hover)}
+.item small{margin-left:auto;color:var(--muted);font-weight:400;font-size:14px}
+.item::after{content:"";width:7px;height:7px;flex:none;border-top:1.5px solid var(--muted);border-right:1.5px solid var(--muted);transform:rotate(45deg)}
+.item:not(:has(small))::after{margin-left:auto}
+.mono{width:44px;height:44px;flex:none;border-radius:10px;background:var(--hover);border:1px solid var(--border);color:var(--h);display:grid;place-items:center;font-size:18px;font-weight:600;overflow:hidden}
 .mono img{width:100%;height:100%;object-fit:cover}
-.hint{color:var(--muted);margin:8px 2px}
-
-.back{display:inline-flex;align-items:center;gap:8px;margin-bottom:24px;padding:6px 0;color:var(--muted);text-decoration:none;font-size:15px;font-weight:600}
-.back::before{content:"";width:8px;height:8px;border-left:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg)}
-.back:hover{color:var(--accent-ink)}
-.hero-mono{width:76px;height:76px;border-radius:24px;font-size:32px;margin-bottom:18px}
+.hint{color:var(--muted);margin:8px 0}
+.back{display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;padding:6px 0;color:var(--muted);text-decoration:none;font-size:15px}
+body:not(.admin) .back::before{content:"";width:7px;height:7px;border-left:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg)}
+.back:hover{color:var(--h)}
+.hero-mono{width:84px;height:84px;border-radius:18px;font-size:34px;margin-bottom:18px}
 .btns{display:flex;flex-direction:column;gap:10px}
-.btn{padding:14px 18px 14px 14px;font-size:17px}
-.pf{width:40px;height:40px;flex:none;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:16px}
-
-a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px}
-footer .wrap{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding-top:18px;padding-bottom:20px}
-footer a{color:var(--muted);font-weight:600;text-decoration:none}
-footer a:hover{color:var(--accent-ink)}
+.btn{display:flex;align-items:center;gap:14px;padding:12px 18px 12px 12px;border-radius:12px;background:var(--h);color:#fff;text-decoration:none;font-weight:600;font-size:16px}
+.btn:hover{background:#333}
+.btn::after{content:"";width:7px;height:7px;margin-left:auto;border-top:1.5px solid #fff;border-right:1.5px solid #fff;transform:rotate(45deg);opacity:.7}
+.pf{width:36px;height:36px;flex:none;border-radius:9px;background:#fff;display:grid;place-items:center}
+.pf svg{width:24px;height:24px;display:block}
+a:focus-visible,button:focus-visible{outline:2px solid var(--h);outline-offset:2px}
+footer{border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding-top:16px;padding-bottom:18px}
+footer a{color:var(--muted)}
+footer a:hover{color:var(--h)}
 footer .copy{margin-left:auto}
-@media (prefers-reduced-motion:reduce){.stars span{animation:none}.item:active,.btn:active{transform:none}}
+@media (min-width:768px){.wrap{max-width:640px}h1{font-size:34px}main{padding-top:48px}}
+:root{--accent:#111111;--accent-dark:#111111}
+:root{--danger:#b00020}
+/* ---- панель администратора ---- */
+body.admin footer{display:none}
+body.admin .wrap{width:100%;max-width:760px;margin:0 auto;padding:0 20px}
+body.admin header{border-bottom:1px solid var(--border)}
+body.admin header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;padding-bottom:14px}
+body.admin header img{height:34px;width:auto;display:block}
+body.admin header .who{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+body.admin main{padding-top:20px;padding-bottom:60px}
+body.admin h1{margin:0 0 6px;font-size:24px;line-height:1.2;color:var(--h)}
+body.admin h2{margin:24px 0 8px;font-size:17px;color:var(--h)}
+body.admin .help{color:var(--muted);font-size:13px;margin:2px 0 8px}
+body.admin .tabs{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+body.admin .tab{border:1px solid var(--border);background:var(--bg);color:var(--text);padding:9px 14px;border-radius:999px;font:inherit;font-size:14px;cursor:pointer}
+body.admin .tab:hover{background:var(--hover)}
+body.admin .tab.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);color:var(--h);font-weight:600;background:var(--hover)}
+body.admin .card{border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:8px 0}
+body.admin .card.off{background:#fafafa}
+body.admin .card.off .name{color:var(--muted)}
+body.admin .vrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+body.admin .vrow .name{flex:1 1 180px;font-weight:600;color:var(--h)}
+body.admin .vrow .name small{display:block;font-weight:400;color:var(--muted)}
+body.admin .thumb{width:40px;height:40px;border-radius:8px;object-fit:cover;border:1px solid var(--border)}
+body.admin label.f{display:block;font-weight:500;color:var(--h);margin:14px 0 4px;font-size:14px}
+body.admin input[type=text],body.admin input[type=url],body.admin input[type=email],body.admin input[type=password],body.admin input[type=search],body.admin select{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:10px;font:inherit;font-size:15px;background:var(--bg);color:var(--h)}
+body.admin input:focus,body.admin select:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+body.admin .row{display:flex;gap:8px;margin:6px 0;flex-wrap:wrap;align-items:center}
+body.admin .row .grow{flex:1 1 200px}
+body.admin .b{border:1px solid var(--border);background:var(--bg);color:var(--h);padding:9px 13px;border-radius:10px;font:inherit;font-size:14px;cursor:pointer}
+body.admin .b:hover{background:var(--hover)}
+body.admin .b:disabled{opacity:.5;cursor:default}
+body.admin .b.main{background:var(--h);color:#fff;border-bottom:3px solid var(--accent);font-weight:600}
+body.admin .b.main:hover{background:#333}
+body.admin .b.danger{color:var(--danger)}
+body.admin .b.sq{padding:9px 11px}
+body.admin .chk{display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;white-space:nowrap}
+body.admin .chk input{width:18px;height:18px;accent-color:var(--accent)}
+body.admin .err{color:var(--danger);background:#fff1f1;border:1px solid #f3c6c6;border-radius:10px;padding:10px 12px;margin:10px 0;font-size:14px}
+body.admin .ok{color:var(--accent-dark);background:#f5f5f5;border:1px solid #e5e5e5;border-radius:10px;padding:10px 12px;margin:10px 0;font-size:14px}
+body.admin .note{background:#f5f5f5;border:1px solid #e5e5e5;border-radius:12px;padding:12px 14px;margin:0 0 14px;font-size:14px}
+body.admin .login{max-width:380px;margin:40px auto}
+body.admin .hint{color:var(--muted);margin:8px 0}
+body.admin details{margin-top:14px}
+body.admin summary{cursor:pointer;color:var(--muted);font-size:14px}
+body.admin .logo-prev{display:flex;align-items:center;gap:12px;margin:6px 0}
+body.admin .logo-prev img{width:64px;height:64px;border-radius:12px;object-fit:cover;border:1px solid var(--border)}
+body.admin .pl-title{display:flex;align-items:center;justify-content:space-between;gap:8px}
+body.admin .pl-title h3{margin:0;font-size:15px;color:var(--h)}
 </style>
 </head>
 <body>
@@ -85,72 +115,210 @@ footer .copy{margin-left:auto}
 <main><div class="wrap" id="page"></div></main>
 <footer><div class="wrap" id="foot"></div></footer>
 
+<!-- ============ НАСТРОЙКИ (меняются только здесь) ============ -->
 <script>
-/* ========== 1. ДАННЫЕ ========== */
-const DATA = {
-  cities: [
-    { id: 'bishkek', color: '#E8590C', names: { ru: 'Бишкек', ky: 'Бишкек', en: 'Bishkek' } },
-    { id: 'karakol', color: '#2F6FED', names: { ru: 'Каракол', ky: 'Каракол', en: 'Karakol' } },
-    { id: 'osh', color: '#C2255C', names: { ru: 'Ош',      ky: 'Ош',      en: 'Osh' } }
-  ],
-  platforms: [
-    { id: '2gis',      name: '2GIS', glyph: '2', color: '#19AA1E' },
-    { id: 'google',    name: 'Google Maps', glyph: 'G', color: '#4285F4' },
-    { id: 'yandex',    name: 'Яндекс Карты', names: { en: 'Yandex Maps', ky: 'Яндекс Карталар' }, glyph: 'Я', color: '#FC3F1D' },
-    { id: 'instagram', name: 'Instagram', glyph: 'In', color: '#D6249F' }
-  ],
-  venues: [
-    { slug: 'navat-bishkek', name: 'Navat', city: 'bishkek', logo: null, active: true,
-      links: { '2gis': 'https://2gis.kg/', google: 'https://maps.google.com/', instagram: 'https://www.instagram.com/' } },
-    { slug: 'coffee-point', name: 'Coffee Point', city: 'bishkek', logo: null, active: true,
-      links: { '2gis': 'https://2gis.kg/' } },
-    { slug: 'ala-too-cafe', name: 'Ala-Too Cafe', city: 'karakol', logo: null, active: true,
-      links: { google: 'https://maps.google.com/', yandex: 'https://yandex.ru/maps/' } },
-    { slug: 'osh-grill', name: 'Osh Grill', city: 'osh', logo: null, active: true,
-      links: { yandex: 'https://yandex.ru/maps/', instagram: 'https://www.instagram.com/' } },
-    { slug: 'hidden-place', name: 'Hidden Place', city: 'osh', logo: null, active: false,
-      links: { '2gis': 'https://2gis.kg/' } }
-  ]
-};
-const CONTACTS = { whatsapp: 'https://wa.me/', telegram: 'https://t.me/' };
+// Настройки подключения. Эти значения не секретные, их можно хранить в открытом виде.
+// Где взять: Supabase -> Project Settings -> API.
+window.APEX_CONFIG = {
+  url: 'https://tyrekkzzipqephwcbqor.supabase.co',        // например: https://abcdxyz.supabase.co
+  anonKey: 'sb_publishable_bN2wFLeYtpcyZ8SH58GF9Q_NkXyqBJZ',     // публичный ключ (anon / publishable). Секретный ключ сюда НЕ вставлять!
 
-/* ========== 2. ПЕРЕВОДЫ ========== */
+  // Контакты в подвале сайта. Пустую строку можно оставить, ссылка тогда не покажется.
+  whatsapp: '',                         // например: https://wa.me/996XXXXXXXXX
+  telegram: '',                         // например: https://t.me/username
+  privacy: ''                           // ссылка на политику конфиденциальности (необязательно)
+};
+</script>
+
+<!-- SQL для подготовки базы: копируется кнопкой на экране входа в панель -->
+<script type="text/plain" id="schema-sql">
+-- Apex: структура базы данных. Выполняется один раз в Supabase: SQL Editor -> New query -> вставить -> Run.
+
+-- ========== Таблицы ==========
+create table if not exists countries (
+  id uuid primary key default gen_random_uuid(),
+  name_ru text not null, name_ky text, name_en text,
+  sort int not null default 0,
+  active boolean not null default true
+);
+
+create table if not exists cities (
+  id uuid primary key default gen_random_uuid(),
+  country_id uuid not null references countries(id) on delete restrict,
+  name_ru text not null, name_ky text, name_en text,
+  sort int not null default 0,
+  active boolean not null default true
+);
+
+create table if not exists platforms (
+  id uuid primary key default gen_random_uuid(),
+  key text not null unique,
+  name_ru text not null, name_ky text, name_en text,
+  sort int not null default 0,
+  active boolean not null default true
+);
+
+create table if not exists venues (
+  id uuid primary key default gen_random_uuid(),
+  slug text not null unique,
+  city_id uuid not null references cities(id) on delete restrict,
+  name text not null, name_ky text, name_en text,
+  logo_url text,
+  sort int not null default 0,
+  active boolean not null default true,
+  created_at timestamptz not null default now()
+);
+
+create table if not exists venue_links (
+  id uuid primary key default gen_random_uuid(),
+  venue_id uuid not null references venues(id) on delete cascade,
+  platform_id uuid not null references platforms(id) on delete restrict,
+  label text,
+  url text not null check (url ~ '^https://'),
+  sort int not null default 0,
+  active boolean not null default true
+);
+
+create index if not exists idx_cities_country on cities (country_id);
+create index if not exists idx_venues_city on venues (city_id);
+create index if not exists idx_links_venue on venue_links (venue_id);
+
+-- ========== Права доступа ==========
+-- Посетители (anon) только читают видимые записи.
+-- Администратор (вошедший пользователь, authenticated) читает и меняет всё.
+alter table countries   enable row level security;
+alter table cities      enable row level security;
+alter table platforms   enable row level security;
+alter table venues      enable row level security;
+alter table venue_links enable row level security;
+
+drop policy if exists countries_public on countries;
+create policy countries_public   on countries   for select to anon using (active);
+drop policy if exists cities_public on cities;
+create policy cities_public      on cities      for select to anon using (active);
+drop policy if exists platforms_public on platforms;
+create policy platforms_public   on platforms   for select to anon using (active);
+drop policy if exists venues_public on venues;
+create policy venues_public      on venues      for select to anon using (active);
+drop policy if exists venue_links_public on venue_links;
+create policy venue_links_public on venue_links for select to anon using (active);
+
+drop policy if exists countries_admin on countries;
+create policy countries_admin   on countries   for all to authenticated using (true) with check (true);
+drop policy if exists cities_admin on cities;
+create policy cities_admin      on cities      for all to authenticated using (true) with check (true);
+drop policy if exists platforms_admin on platforms;
+create policy platforms_admin   on platforms   for all to authenticated using (true) with check (true);
+drop policy if exists venues_admin on venues;
+create policy venues_admin      on venues      for all to authenticated using (true) with check (true);
+drop policy if exists venue_links_admin on venue_links;
+create policy venue_links_admin on venue_links for all to authenticated using (true) with check (true);
+
+grant select on countries, cities, platforms, venues, venue_links to anon;
+grant select, insert, update, delete on countries, cities, platforms, venues, venue_links to authenticated;
+
+-- ========== Хранилище для логотипов ==========
+insert into storage.buckets (id, name, public) values ('logos', 'logos', true) on conflict (id) do nothing;
+
+drop policy if exists logos_admin_insert on storage.objects;
+create policy logos_admin_insert on storage.objects for insert to authenticated with check (bucket_id = 'logos');
+drop policy if exists logos_admin_update on storage.objects;
+create policy logos_admin_update on storage.objects for update to authenticated using (bucket_id = 'logos');
+drop policy if exists logos_admin_delete on storage.objects;
+create policy logos_admin_delete on storage.objects for delete to authenticated using (bucket_id = 'logos');
+
+-- ========== Начальные данные (добавляются только в пустую базу) ==========
+do $seed$
+begin
+if not exists (select 1 from countries) then
+insert into countries (name_ru, name_ky, name_en, sort) values ('Кыргызстан', 'Кыргызстан', 'Kyrgyzstan', 10);
+
+insert into cities (country_id, name_ru, name_ky, name_en, sort)
+select (select id from countries limit 1), n.ru, n.ky, n.en, n.s
+from (values ('Бишкек', 'Бишкек', 'Bishkek', 10),
+             ('Каракол', 'Каракол', 'Karakol', 20),
+             ('Ош', 'Ош', 'Osh', 30)) as n(ru, ky, en, s);
+
+insert into platforms (key, name_ru, name_ky, name_en, sort) values
+  ('2gis',      '2GIS',         '2GIS',            '2GIS',        10),
+  ('google',    'Google Maps',  'Google Maps',     'Google Maps', 20),
+  ('yandex',    'Яндекс Карты', 'Яндекс Карталар', 'Yandex Maps', 30),
+  ('instagram', 'Instagram',    'Instagram',       'Instagram',   40);
+
+insert into venues (slug, city_id, name, name_ky, name_en, sort)
+values ('karakolka', (select id from cities where name_en = 'Karakol'), 'Караколка', 'Караколка', 'Karakolka', 10);
+
+insert into venue_links (venue_id, platform_id, url, sort)
+values ((select id from venues where slug = 'karakolka'),
+        (select id from platforms where key = '2gis'),
+        'https://2gis.kg/karakol/firm/70000001088255116', 10);
+end if;
+end
+$seed$;
+
+</script>
+
+<script>
+const CFG = window.APEX_CONFIG || {};
+const LOGO = 'data:image/jpeg;base64,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';
+const BANNER = 'data:image/jpeg;base64,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';   // баннер на главной тоже встроен в страницу   // логотип встроен в страницу, отдельный файл не нужен
+
+const ICON = {   // упрощённые значки платформ; при желании замените на официальные SVG
+  '2gis': '<svg viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#19AA1E"/><text x="12" y="17.6" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="16" fill="#fff">2</text></svg>',
+  google: '<svg viewBox="0 0 24 24"><defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset=".38" stop-color="#EA4335"/><stop offset=".38" stop-color="#FBBC04"/><stop offset=".62" stop-color="#FBBC04"/><stop offset=".62" stop-color="#34A853"/><stop offset=".82" stop-color="#34A853"/><stop offset=".82" stop-color="#4285F4"/></linearGradient></defs><path d="M12 1.5a7.5 7.5 0 0 0-7.5 7.5c0 5.4 7.5 13.5 7.5 13.5s7.5-8.100 7.500-13.500A7.500 7.500 0 0 0 12 1.500z" fill="url(#gg)"/><circle cx="12" cy="9" r="2.8" fill="#fff"/></svg>',
+  yandex: '<svg viewBox="0 0 24 24"><path d="M12 1.500a7.500 7.500 0 0 0-7.500 7.500c0 5.400 7.500 13.500 7.500 13.500s7.500-8.100 7.500-13.500A7.500 7.500 0 0 0 12 1.500z" fill="#FC3F1D"/><circle cx="12" cy="9" r="2.800" fill="#fff"/></svg>',
+  instagram: '<svg viewBox="0 0 24 24"><defs><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA77"/><stop offset=".35" stop-color="#F58529"/><stop offset=".65" stop-color="#DD2A7B"/><stop offset="1" stop-color="#8134AF"/></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig)"/><rect x="5" y="5" width="14" height="14" rx="4.500" fill="none" stroke="#fff" stroke-width="1.700"/><circle cx="12" cy="12" r="3.300" fill="none" stroke="#fff" stroke-width="1.700"/><circle cx="16.500" cy="7.500" r="1.100" fill="#fff"/></svg>'
+};
+
+/* ================= САЙТ ДЛЯ ГОСТЕЙ ================= */
+(function () {
+
+
+/* ========== ПЕРЕВОДЫ ========== */
 const UI = {
   ru: { greet: 'Спасибо, что выбираете нас!', sub: 'Выберите город и заведение, чтобы поделиться своим мнением',
         search: 'Найти заведение', hint: 'Выберите город или начните вводить название заведения',
         none: 'Ничего не найдено', venueText: 'Нам важно ваше мнение. Выберите удобную платформу, чтобы поделиться впечатлениями',
         back: 'Назад', notFound: 'Заведение не найдено', noLinks: 'Для этого заведения ещё не добавлены ссылки',
-        rights: 'Все права защищены' },
+        rights: 'Все права защищены', branch: 'Филиал', chooseBranch: 'Выберите филиал', privacy: 'Политика конфиденциальности',
+        loading: 'Загрузка…', loadError: 'Не удалось загрузить данные. Проверьте интернет и обновите страницу.',
+        setup: 'Сайт ещё не подключён к базе данных. Откройте файл config.js и вставьте настройки проекта.' },
   ky: { greet: 'Бизди тандаганыңыз үчүн рахмат!', sub: 'Пикириңиз менен бөлүшүү үчүн шаарды жана мекемени тандаңыз',
         search: 'Мекемени издөө', hint: 'Шаарды тандаңыз же мекеменин атын жазыңыз',
         none: 'Эч нерсе табылган жок', venueText: 'Сиздин пикириңиз биз үчүн маанилүү. Таасирлериңиз менен бөлүшүү үчүн ыңгайлуу платформаны тандаңыз',
         back: 'Артка', notFound: 'Мекеме табылган жок', noLinks: 'Бул мекеме үчүн шилтемелер азырынча кошула элек',
-        rights: 'Бардык укуктар корголгон' },
+        rights: 'Бардык укуктар корголгон', branch: 'Филиал', chooseBranch: 'Филиалды тандаңыз', privacy: 'Купуялуулук саясаты',
+        loading: 'Жүктөлүүдө…', loadError: 'Маалымат жүктөлгөн жок. Интернетти текшерип, баракты жаңыртыңыз.',
+        setup: 'Сайт маалымат базасына туташа элек. config.js файлын ачып, долбоордун жөндөөлөрүн киргизиңиз.' },
   en: { greet: 'Thank you for choosing us!', sub: 'Choose a city and a venue to share your opinion',
         search: 'Search for a venue', hint: 'Choose a city or start typing a venue name',
         none: 'Nothing found', venueText: 'Your opinion matters to us. Choose a platform to share your experience',
         back: 'Back', notFound: 'Venue not found', noLinks: 'No links have been added for this venue yet',
-        rights: 'All rights reserved' }
+        rights: 'All rights reserved', branch: 'Branch', chooseBranch: 'Choose a branch', privacy: 'Privacy policy',
+        loading: 'Loading…', loadError: 'Could not load data. Check your connection and refresh the page.',
+        setup: 'The site is not connected to the database yet. Open config.js and paste the project settings.' }
 };
 
-/* ========== 3. СОСТОЯНИЕ И ПОМОЩНИКИ ========== */
+/* ========== СОСТОЯНИЕ ========== */
 let lang = 'ru';
 try { lang = localStorage.getItem('apex-lang') || 'ru'; } catch (e) {}
 if (!UI[lang]) lang = 'ru';
-let city = '', query = '';
+
+let DATA = null;          // { countries, cities, platforms, venues }
+let status = 'loading';   // loading | ready | error | setup
+let country = '', city = '', query = '';
 
 const t = key => UI[lang][key];
-const cityName = id => { const c = DATA.cities.find(c => c.id === id); return c ? (c.names[lang] || c.names.ru) : ''; };
-const venueName = v => (v.names && v.names[lang]) || v.name;
-const platformName = p => (p.names && p.names[lang]) || p.name;
-const initial = v => venueName(v).trim().charAt(0).toUpperCase();
+const loc = names => names[lang] || names.ru;
 
 function el(tag, attrs = {}, ...kids) {
   const n = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs)) {
+    if (v === false || v == null) continue;
     if (k === 'class') n.className = v;
+    else if (k === 'value') n.value = v;
     else if (k.startsWith('on')) n.addEventListener(k.slice(2), v);
-    else n.setAttribute(k, v);
+    else n.setAttribute(k, v === true ? '' : v);
   }
   n.append(...kids.flat().filter(Boolean));
   return n;
@@ -159,98 +327,600 @@ function isSafeUrl(u) { try { return new URL(u).protocol === 'https:'; } catch (
 
 // плитка заведения: логотип, а если его нет или он не загрузился, первая буква названия
 function mono(v, extra) {
-  const cc = (DATA.cities.find(c => c.id === v.city) || {}).color;
-  const box = el('span', { class: 'mono' + (extra ? ' ' + extra : ''), 'aria-hidden': 'true',
-    style: cc ? 'background:' + cc + ';color:#fff' : '' }, initial(v));
-  if (v.logo) box.replaceChildren(el('img', { src: v.logo, alt: '', onerror: e => box.replaceChildren(initial(v)) }));
+  const letter = loc(v.names).trim().charAt(0).toUpperCase();
+  const box = el('span', { class: 'mono' + (extra ? ' ' + extra : ''), 'aria-hidden': 'true' }, letter);
+  if (v.logo) box.replaceChildren(el('img', { src: v.logo, alt: '', onerror: () => box.replaceChildren(letter) }));
   return box;
 }
+// значок платформы; если для ключа нет значка, кнопка остаётся просто с текстом
+function platformIcon(p) {
+  if (!ICON[p.key]) return null;
+  const s = el('span', { class: 'pf', 'aria-hidden': 'true' });
+  s.innerHTML = ICON[p.key];   // значки заданы в коде выше, пользовательских данных тут нет
+  return s;
+}
 
-/* ========== 4. СТРАНИЦЫ ========== */
+/* ========== ЗАГРУЗКА ДАННЫХ ИЗ БАЗЫ ========== */
+const nm = r => ({ ru: r.name_ru, ky: r.name_ky || r.name_ru, en: r.name_en || r.name_ru });
+
+function build(co, ci, pl, ve) {
+  const platforms = pl.map(p => ({ id: p.id, key: p.key, names: nm(p) }));
+  const known = new Set(platforms.map(p => p.id));
+  const countries = co.map(c => ({ id: c.id, names: nm(c) }));
+  const cIds = new Set(countries.map(c => c.id));
+  const cities = ci.filter(c => cIds.has(c.country_id)).map(c => ({ id: c.id, country: c.country_id, names: nm(c) }));
+  const cityIds = new Set(cities.map(c => c.id));
+  const venues = ve.filter(v => cityIds.has(v.city_id)).map(v => {
+    const links = {};
+    (v.venue_links || []).slice().sort((a, b) => a.sort - b.sort).forEach(l => {
+      if (known.has(l.platform_id)) (links[l.platform_id] = links[l.platform_id] || []).push({ label: l.label || '', url: l.url });
+    });
+    return { slug: v.slug, city: v.city_id, logo: v.logo_url || null,
+      names: { ru: v.name, ky: v.name_ky || v.name, en: v.name_en || v.name }, links };
+  });
+  return { countries, cities, platforms, venues };
+}
+
+async function load() {
+  if (!CFG.url || !CFG.anonKey || /PASTE_/.test(CFG.url + CFG.anonKey)) { status = 'setup'; return render(); }
+  const get = p => fetch(CFG.url + '/rest/v1/' + p, { headers: { apikey: CFG.anonKey } })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
+  try {
+    const [co, ci, pl, ve] = await Promise.all([
+      get('countries?select=id,name_ru,name_ky,name_en&active=eq.true&order=sort'),
+      get('cities?select=id,country_id,name_ru,name_ky,name_en&active=eq.true&order=sort'),
+      get('platforms?select=id,key,name_ru,name_ky,name_en&active=eq.true&order=sort'),
+      get('venues?select=slug,city_id,name,name_ky,name_en,logo_url,venue_links(label,url,sort,platform_id)&active=eq.true&order=sort')
+    ]);
+    const next = build(co, ci, pl, ve);
+    const same = DATA && JSON.stringify(DATA) === JSON.stringify(next);
+    DATA = next; status = 'ready';
+    try { localStorage.setItem('apex-cache', JSON.stringify(next)); } catch (e) {}
+    if (!same) render();
+  } catch (e) {
+    if (!DATA) { status = 'error'; render(); }
+  }
+}
+
+// Показываем последние сохранённые данные сразу, пока грузятся свежие
+try { const c = JSON.parse(localStorage.getItem('apex-cache')); if (c && c.venues) { DATA = c; status = 'ready'; } } catch (e) {}
+
+/* ========== СТРАНИЦЫ ========== */
+function branchLabel(x, i) { return x.label || (t('branch') + ' ' + (i + 1)); }
+function linkItems(v, pid) { return (v.links[pid] || []).filter(x => isSafeUrl(x.url)); }
+
 function homePage() {
   const list = el('div', { class: 'list' });
+  const multiCountry = DATA.countries.length > 1;
+  const cityList = DATA.cities.filter(c => !multiCountry || c.country === country);
 
   function fillList() {
     list.replaceChildren();
     const term = query.trim().toLowerCase();
     if (!city && !term) { list.append(el('p', { class: 'hint' }, t('hint'))); return; }
-    const found = DATA.venues.filter(v =>
-      v.active && (!city || v.city === city) && (!term || venueName(v).toLowerCase().includes(term)));
+    const cityById = new Map(DATA.cities.map(c => [c.id, c]));
+    const found = DATA.venues.filter(v => {
+      if (city && v.city !== city) return false;
+      if (multiCountry && country && cityById.get(v.city).country !== country) return false;
+      return !term || Object.values(v.names).some(n => n.toLowerCase().includes(term));
+    });
     if (!found.length) { list.append(el('p', { class: 'hint' }, t('none'))); return; }
     for (const v of found) {
-      list.append(el('a', { class: 'item', href: '#' + v.slug },
-        mono(v), el('span', {}, venueName(v)),
-        city ? null : el('small', {}, cityName(v.city))));
+      list.append(el('a', { class: 'item', href: '#/r/' + v.slug },
+        mono(v),
+        el('span', {}, loc(v.names)),
+        city ? null : el('small', {}, loc(cityById.get(v.city).names))));
     }
   }
 
   const input = el('input', { type: 'search', placeholder: t('search'), 'aria-label': t('search'),
     autocomplete: 'off', value: query, oninput: e => { query = e.target.value; fillList(); } });
 
-  const chips = el('div', { class: 'chips' }, DATA.cities.map(c =>
-    el('button', { type: 'button', class: 'chip' + (city === c.id ? ' on' : ''), 'aria-pressed': String(city === c.id), style: '--c:' + c.color,
-      onclick: () => { city = city === c.id ? '' : c.id; render(); } }, c.names[lang] || c.names.ru)));
+  const chip = (on, label, fn) => el('button', { type: 'button', class: 'chip' + (on ? ' on' : ''), onclick: fn }, label);
+  const countryChips = multiCountry ? el('div', { class: 'chips' }, DATA.countries.map(c =>
+    chip(country === c.id, loc(c.names), () => { country = country === c.id ? '' : c.id; city = ''; render(); }))) : null;
+  const cityChips = (!multiCountry || country) ? el('div', { class: 'chips' }, cityList.map(c =>
+    chip(city === c.id, loc(c.names), () => { city = city === c.id ? '' : c.id; render(); }))) : null;
 
   fillList();
-  const stars = el('div', { class: 'stars', 'aria-hidden': 'true' },
-    [0, 1, 2, 3, 4].map(i => el('span', { style: '--i:' + i }, '★')));
-  const rot = ['-7deg', '5deg', '-3deg', '8deg'];
-  const tiles = el('div', { class: 'tiles', 'aria-hidden': 'true' }, DATA.platforms.map((p, i) =>
-    el('span', { style: 'background:' + p.color + ';--r:' + rot[i % 4] }, p.glyph)));
-  const hero = el('section', { class: 'hero' }, stars, el('h1', {}, t('greet')), el('p', { class: 'sub' }, t('sub')), tiles);
-  return [hero, chips, input, list];
+  return [el('img', { class: 'banner', src: BANNER, alt: '' }), el('h1', {}, t('greet')), el('p', { class: 'sub' }, t('sub')), countryChips, cityChips, input, list];
 }
 
 function venuePage(slug) {
-  const back = el('a', { class: 'back', href: '#' }, t('back'));
-  const v = DATA.venues.find(v => v.slug === slug && v.active);
+  const back = el('a', { class: 'back', href: '#/' }, t('back'));
+  const v = DATA.venues.find(v => v.slug === slug);
   if (!v) return [back, el('h1', {}, t('notFound'))];
 
-  const buttons = DATA.platforms
-    .filter(p => v.links[p.id] && isSafeUrl(v.links[p.id]))
-    .map(p => el('a', { class: 'btn', href: v.links[p.id], target: '_blank', rel: 'noopener noreferrer' },
-      el('span', { class: 'pf', style: 'background:' + p.color, 'aria-hidden': 'true' }, p.glyph),
-      platformName(p)));
+  const buttons = DATA.platforms.flatMap(p => {
+    const items = linkItems(v, p.id);
+    if (!items.length) return [];
+    return items.length === 1
+      ? [el('a', { class: 'btn', href: items[0].url, target: '_blank', rel: 'noopener noreferrer' }, platformIcon(p), loc(p.names))]
+      : [el('a', { class: 'btn', href: '#/r/' + v.slug + '/' + p.key }, platformIcon(p), loc(p.names))];
+  });
 
-  return [back, mono(v, 'hero-mono'),
-    el('h1', {}, venueName(v)),
+  return [back,
+    mono(v, 'hero-mono'),
+    el('h1', {}, loc(v.names)),
     el('p', { class: 'sub' }, t('venueText')),
-    buttons.length ? el('div', { class: 'btns' }, buttons) : el('p', { class: 'hint' }, t('noLinks'))];
+    ...(buttons.length ? buttons : [el('p', { class: 'hint' }, t('noLinks'))])];
 }
 
-/* ========== 5. ШАПКА, ПОДВАЛ, МАРШРУТЫ ========== */
-function logoEl() {
-  const mark = el('i', { 'aria-hidden': 'true' }, '★');
-  const a = el('a', { class: 'logo', href: '#', 'aria-label': 'Apex' }, mark, 'Apex');
-  // если рядом лежит logo.jpg, показываем его, иначе остаётся знак со звездой
-  const img = new Image(); img.alt = 'Apex';
-  img.onload = () => a.replaceChildren(img);
-  img.src = 'logo.jpg';
-  return a;
+function branchPage(slug, key) {
+  const back = el('a', { class: 'back', href: '#/r/' + slug }, t('back'));
+  const v = DATA.venues.find(v => v.slug === slug);
+  const p = DATA.platforms.find(p => p.key === key);
+  const items = v && p ? linkItems(v, p.id) : [];
+  if (!items.length) return [back, el('h1', {}, t('notFound'))];
+  return [back,
+    el('h1', {}, loc(v.names) + ' · ' + loc(p.names)),
+    el('p', { class: 'sub' }, t('chooseBranch')),
+    ...items.map((x, i) => el('a', { class: 'btn', href: x.url, target: '_blank', rel: 'noopener noreferrer' }, platformIcon(p), branchLabel(x, i)))];
 }
 
+/* ========== ШАПКА, ПОДВАЛ, МАРШРУТЫ ========== */
 function render() {
+  if (location.hash === '#/admin') return;   // на этом адресе работает панель администратора
   document.documentElement.lang = lang;
+  if (!document.querySelector('link[rel=icon]')) document.head.append(el('link', { rel: 'icon', href: LOGO }));
 
   document.getElementById('top').replaceChildren(
-    logoEl(),
+    el('a', { class: 'logo', href: '#/', 'aria-label': 'Apex' }, el('img', { src: LOGO, alt: 'Apex' })),
     el('div', { class: 'langs' }, Object.keys(UI).map(l =>
       el('button', { type: 'button', class: l === lang ? 'on' : '',
         onclick: () => { lang = l; try { localStorage.setItem('apex-lang', l); } catch (e) {} render(); } }, l.toUpperCase()))));
 
-  const m = location.hash.match(/^#(?:\/r\/)?([\w-]+)$/);   // #navat-bishkek и старый вид #/r/navat-bishkek
-  document.getElementById('page').replaceChildren(...(m ? venuePage(m[1]) : homePage()));
+  let page;
+  if (status === 'ready' && DATA) {
+    const m = location.hash.match(/^#\/r\/([\w-]+)(?:\/([\w-]+))?$/);
+    page = m ? (m[2] ? branchPage(m[1], m[2]) : venuePage(m[1])) : homePage();
+  } else {
+    page = [el('p', { class: 'hint' }, t(status === 'loading' ? 'loading' : status === 'setup' ? 'setup' : 'loadError'))];
+  }
+  document.getElementById('page').replaceChildren(...page);
 
+  const link = (href, text) => href && isSafeUrl(href) ? el('a', { href, target: '_blank', rel: 'noopener noreferrer' }, text) : null;
   document.getElementById('foot').replaceChildren(
-    el('a', { href: CONTACTS.whatsapp, target: '_blank', rel: 'noopener noreferrer' }, 'WhatsApp'),
-    el('a', { href: CONTACTS.telegram, target: '_blank', rel: 'noopener noreferrer' }, 'Telegram'),
+    link(CFG.whatsapp, 'WhatsApp'), link(CFG.telegram, 'Telegram'), link(CFG.privacy, t('privacy')),
     el('span', { class: 'copy' }, '© ' + new Date().getFullYear() + ' Apex. ' + t('rights')));
 }
 
 window.addEventListener('hashchange', render);
 render();
+load();
+
+})();
+
+/* ============ ПАНЕЛЬ АДМИНИСТРАТОРА (адрес: Apex.html#/admin) ============ */
+(function () {
+
+const $ = id => document.getElementById(id);
+
+/* ========== СОСТОЯНИЕ ========== */
+let session = null;
+try { session = JSON.parse(localStorage.getItem('apex-admin')); } catch (e) {}
+let D = { countries: [], cities: [], platforms: [], venues: [] };
+let tab = 'venues', form = null, msg = '', err = '', vq = '', vcity = '';
+
+function el(tag, attrs = {}, ...kids) {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v === false || v == null) continue;
+    if (k === 'class') n.className = v;
+    else if (k === 'value') n.value = v;
+    else if (k.startsWith('on')) n.addEventListener(k.slice(2), v);
+    else n.setAttribute(k, v === true ? '' : v);
+  }
+  n.append(...kids.flat().filter(Boolean));
+  return n;
+}
+function isSafeUrl(u) { try { return new URL(u).protocol === 'https:'; } catch (e) { return false; } }
+
+const RU = { 'а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','ё':'e','ж':'zh','з':'z','и':'i','й':'y','к':'k','л':'l','м':'m',
+  'н':'n','о':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ф':'f','х':'h','ц':'c','ч':'ch','ш':'sh','щ':'sch','ы':'y','э':'e','ю':'yu','я':'ya' };
+const slugify = s => s.toLowerCase().split('').map(ch => RU[ch] !== undefined ? RU[ch] : ch).join('')
+  .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+/* ========== СВЯЗЬ С БАЗОЙ И ВХОД ========== */
+const configured = () => CFG.url && CFG.anonKey && !/PASTE_/.test(CFG.url + CFG.anonKey);
+
+function friendly(status, body) {
+  const code = body && body.code;
+  if (code === '23503') return 'Это нельзя удалить: к нему привязаны другие записи (например, в городе есть заведения). Сначала скройте его или удалите связанные записи.';
+  if (code === '23505') return 'Такая запись уже есть.';
+  if (status === 401 || status === 403) return 'Сессия истекла. Войдите заново.';
+  if (status === 0) return 'Нет связи с сервером. Проверьте интернет.';
+  if (status === 404) return 'В базе не найдены таблицы. Выполните SQL из блока «Первый запуск» на экране входа.';
+  return 'Не получилось сохранить (ошибка ' + status + '). Попробуйте ещё раз.';
+}
+
+function saveSession(j) {
+  session = { access_token: j.access_token, refresh_token: j.refresh_token,
+    expires_at: Math.floor(Date.now() / 1000) + (j.expires_in || 3600), email: (j.user && j.user.email) || (session && session.email) || '' };
+  try { localStorage.setItem('apex-admin', JSON.stringify(session)); } catch (e) {}
+}
+function logout() {
+  session = null; form = null;
+  try { localStorage.removeItem('apex-admin'); } catch (e) {}
+  render();
+}
+async function authCall(grant, payload) {
+  const r = await fetch(CFG.url + '/auth/v1/token?grant_type=' + grant, { method: 'POST',
+    headers: { apikey: CFG.anonKey, 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error('auth');
+  return j;
+}
+async function token() {
+  if (!session) throw Object.assign(new Error('Войдите в панель.'), { status: 401 });
+  if (session.expires_at - 60 < Date.now() / 1000) {
+    try { saveSession(await authCall('refresh_token', { refresh_token: session.refresh_token })); }
+    catch (e) { throw Object.assign(new Error(friendly(401)), { status: 401 }); }
+  }
+  return session.access_token;
+}
+async function api(method, path, body) {
+  const tk = await token();
+  let r;
+  try {
+    r = await fetch(CFG.url + path, { method,
+      headers: { apikey: CFG.anonKey, Authorization: 'Bearer ' + tk, 'Content-Type': 'application/json', Prefer: 'return=representation' },
+      body: body !== undefined ? JSON.stringify(body) : undefined });
+  } catch (e) { throw Object.assign(new Error(friendly(0)), { status: 0 }); }
+  const txt = await r.text();
+  let j = null; try { j = txt ? JSON.parse(txt) : null; } catch (e) {}
+  if (!r.ok) throw Object.assign(new Error(friendly(r.status, j)), { status: r.status, code: j && j.code });
+  return j;
+}
+
+async function loadAll() {
+  const [countries, cities, platforms, venues] = await Promise.all([
+    api('GET', '/rest/v1/countries?select=*&order=sort'),
+    api('GET', '/rest/v1/cities?select=*&order=sort'),
+    api('GET', '/rest/v1/platforms?select=*&order=sort'),
+    api('GET', '/rest/v1/venues?select=*,venue_links(*)&order=sort')
+  ]);
+  venues.forEach(v => v.venue_links.sort((a, b) => a.sort - b.sort));
+  D = { countries, cities, platforms, venues };
+}
+
+// Выполняет действие, обновляет данные и показывает результат
+async function run(fn, okMsg) {
+  err = ''; msg = '';
+  try { await fn(); if (okMsg) msg = okMsg; await loadAll(); }
+  catch (e) { err = e.message; if (e.status === 401) { logout(); return; } }
+  render();
+}
+
+const nextSort = rows => rows.reduce((m, r) => Math.max(m, r.sort), 0) + 10;
+
+async function move(table, all, list, i, dir) {
+  const j = i + dir;
+  if (j < 0 || j >= list.length) return;
+  await run(async () => {
+    const order = all.slice().sort((a, b) => a.sort - b.sort);
+    const ns = new Map(order.map((r, k) => [r.id, (k + 1) * 10]));
+    const a = list[i], b = list[j], tmp = ns.get(a.id);
+    ns.set(a.id, ns.get(b.id)); ns.set(b.id, tmp);
+    await Promise.all(order.filter(r => ns.get(r.id) !== r.sort)
+      .map(r => api('PATCH', '/rest/v1/' + table + '?id=eq.' + r.id, { sort: ns.get(r.id) })));
+  });
+}
+const toggle = (table, r) => run(() => api('PATCH', '/rest/v1/' + table + '?id=eq.' + r.id, { active: !r.active }),
+  r.active ? 'Скрыто. Гости больше не видят эту запись, её можно вернуть в любой момент.' : 'Снова показывается на сайте.');
+const remove = (table, r, label) => {
+  if (!confirm('Удалить «' + label + '» навсегда? Это нельзя отменить.\n\nЕсли нужно просто убрать с сайта, нажмите «Скрыть».')) return;
+  run(() => api('DELETE', '/rest/v1/' + table + '?id=eq.' + r.id), 'Удалено: «' + label + '».');
+};
+
+/* ========== ВХОД ========== */
+function loginView() {
+  let email, pass, errBox = el('div');
+  const go = async () => {
+    errBox.replaceChildren();
+    try {
+      saveSession(await authCall('password', { email: email.value.trim(), password: pass.value }));
+      await run(async () => {});
+    } catch (e) { errBox.replaceChildren(el('div', { class: 'err' }, 'Неверная почта или пароль.')); }
+  };
+  email = el('input', { type: 'email', autocomplete: 'username', placeholder: 'Почта' });
+  pass = el('input', { type: 'password', autocomplete: 'current-password', placeholder: 'Пароль', onkeydown: e => { if (e.key === 'Enter') go(); } });
+  return el('div', { class: 'login' },
+    el('h1', {}, 'Вход в панель'),
+    el('p', { class: 'help' }, 'Только для администратора Apex.'),
+    el('label', { class: 'f' }, 'Почта'), email,
+    el('label', { class: 'f' }, 'Пароль'), pass,
+    errBox,
+    el('div', { class: 'row' }, el('button', { type: 'button', class: 'b main', onclick: go }, 'Войти')),
+    el('details', {}, el('summary', {}, 'Первый запуск: как подготовить базу'),
+      el('ol', { class: 'help' },
+        el('li', {}, 'В Supabase откройте SQL Editor и нажмите New query.'),
+        el('li', {}, 'Нажмите кнопку ниже, вставьте скопированный текст в окно и нажмите Run.'),
+        el('li', {}, 'В Authentication → Users создайте администратора (почта и пароль) и выключите регистрацию новых пользователей.')),
+      el('button', { type: 'button', class: 'b', onclick: () => {
+        const text = document.getElementById('schema-sql').textContent;
+        (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject())
+          .then(() => alert('SQL скопирован. Вставьте его в SQL Editor в Supabase.'), () => alert('Не удалось скопировать автоматически. Откройте файл Apex.html в текстовом редакторе и скопируйте текст из блока schema-sql.'));
+      } }, 'Скопировать SQL для базы')));
+}
+
+/* ========== ЗАВЕДЕНИЯ ========== */
+const cityLabel = id => { const c = D.cities.find(c => c.id === id); return c ? c.name_ru : '—'; };
+
+function newVenue() {
+  const d = { id: null, name: '', name_ky: '', name_en: '', city_id: vcity || (D.cities[0] && D.cities[0].id) || '', logo_url: '', active: true, links: {} };
+  D.platforms.forEach(p => d.links[p.id] = [{ label: '', url: '', active: true }]);
+  return d;
+}
+function editVenue(v) {
+  const d = { id: v.id, slug: v.slug, name: v.name, name_ky: v.name_ky || '', name_en: v.name_en || '', city_id: v.city_id,
+    logo_url: v.logo_url || '', active: v.active, links: {} };
+  D.platforms.forEach(p => {
+    const rows = v.venue_links.filter(l => l.platform_id === p.id).map(l => ({ label: l.label || '', url: l.url, active: l.active }));
+    d.links[p.id] = rows.length ? rows : [{ label: '', url: '', active: true }];
+  });
+  return d;
+}
+
+function venuesTab() {
+  const rows = el('div');
+  const fill = () => {
+    rows.replaceChildren();
+    const term = vq.trim().toLowerCase();
+    const list = D.venues.filter(v => (!vcity || v.city_id === vcity) &&
+      (!term || [v.name, v.name_ky, v.name_en].some(x => (x || '').toLowerCase().includes(term))));
+    if (!list.length) { rows.append(el('p', { class: 'hint' }, D.venues.length ? 'Ничего не найдено.' : 'Пока нет ни одного заведения. Нажмите «Добавить заведение».')); return; }
+    list.forEach((v, i) => rows.append(el('div', { class: 'card' + (v.active ? '' : ' off') }, el('div', { class: 'vrow' },
+      v.logo_url ? el('img', { class: 'thumb', src: v.logo_url, alt: '', onerror: e => e.target.remove() }) : null,
+      el('div', { class: 'name' }, v.name, el('small', {}, cityLabel(v.city_id) + (v.active ? '' : ' · скрыто с сайта'))),
+      el('button', { type: 'button', class: 'b sq', title: 'Выше', 'aria-label': 'Выше', onclick: () => move('venues', D.venues, list, i, -1) }, '↑'),
+      el('button', { type: 'button', class: 'b sq', title: 'Ниже', 'aria-label': 'Ниже', onclick: () => move('venues', D.venues, list, i, 1) }, '↓'),
+      el('button', { type: 'button', class: 'b', onclick: () => { form = { kind: 'venue', d: editVenue(v) }; msg = ''; err = ''; render(); } }, 'Изменить'),
+      el('button', { type: 'button', class: 'b', onclick: () => toggle('venues', v) }, v.active ? 'Скрыть' : 'Показать'),
+      el('button', { type: 'button', class: 'b danger', onclick: () => remove('venues', v, v.name) }, 'Удалить')))));
+  };
+  const search = el('input', { type: 'search', class: 'grow', placeholder: 'Найти заведение', 'aria-label': 'Поиск', value: vq,
+    oninput: e => { vq = e.target.value; fill(); } });
+  const sel = el('select', { 'aria-label': 'Город', onchange: e => { vcity = e.target.value; fill(); } },
+    el('option', { value: '' }, 'Все города'),
+    D.cities.map(c => el('option', { value: c.id, selected: c.id === vcity }, c.name_ru)));
+  fill();
+  return [
+    el('div', { class: 'row' }, el('button', { type: 'button', class: 'b main', onclick: () => {
+      if (!D.cities.length) { err = 'Сначала добавьте хотя бы один город во вкладке «Города».'; return render(); }
+      if (!D.platforms.length) { err = 'Сначала добавьте хотя бы одну платформу во вкладке «Платформы».'; return render(); }
+      form = { kind: 'venue', d: newVenue() }; msg = ''; err = ''; render(); }, }, '+ Добавить заведение')),
+    el('div', { class: 'row' }, search, sel),
+    rows];
+}
+
+async function uploadLogo(file) {
+  const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = URL.createObjectURL(file); });
+  const max = 320, k = Math.min(1, max / Math.max(img.width, img.height));
+  const cv = document.createElement('canvas');
+  cv.width = Math.round(img.width * k); cv.height = Math.round(img.height * k);
+  const cx = cv.getContext('2d'); cx.fillStyle = '#fff'; cx.fillRect(0, 0, cv.width, cv.height); cx.drawImage(img, 0, 0, cv.width, cv.height);
+  const blob = await new Promise(res => cv.toBlob(res, 'image/jpeg', 0.85));
+  const name = 'v-' + Date.now() + '.jpg', tk = await token();
+  const r = await fetch(CFG.url + '/storage/v1/object/logos/' + name, { method: 'POST',
+    headers: { apikey: CFG.anonKey, Authorization: 'Bearer ' + tk, 'Content-Type': 'image/jpeg' }, body: blob });
+  if (!r.ok) throw new Error('Не удалось загрузить картинку (ошибка ' + r.status + ').');
+  return CFG.url + '/storage/v1/object/public/logos/' + name;
+}
+
+function venueForm() {
+  const d = form.d;
+  const preview = el('div', { class: 'logo-prev' });
+  const showPrev = () => {
+    preview.replaceChildren();
+    if (d.logo_url) preview.append(el('img', { src: d.logo_url, alt: '' }),
+      el('button', { type: 'button', class: 'b', onclick: () => { d.logo_url = ''; showPrev(); } }, 'Убрать картинку'));
+  };
+  showPrev();
+  const fileInput = el('input', { type: 'file', accept: 'image/*', onchange: async e => {
+    const f = e.target.files[0]; if (!f) return;
+    err = '';
+    try { d.logo_url = await uploadLogo(f); showPrev(); } catch (x) { err = x.message; render(); }
+  } });
+
+  const platformBlock = p => {
+    const rows = d.links[p.id];
+    return el('div', { class: 'card' },
+      el('div', { class: 'pl-title' }, el('h3', {}, p.name_ru + (p.active ? '' : ' (платформа скрыта)'))),
+      rows.map((r, i) => el('div', { class: 'row' },
+        el('input', { type: 'text', class: 'grow', placeholder: 'Адрес или название филиала (если филиалов несколько)', value: r.label,
+          'aria-label': 'Название филиала', oninput: e => { r.label = e.target.value; } }),
+        el('input', { type: 'url', class: 'grow', placeholder: 'Ссылка https://…', value: r.url,
+          'aria-label': 'Ссылка', oninput: e => { r.url = e.target.value; } }),
+        el('label', { class: 'chk' }, el('input', { type: 'checkbox', checked: r.active, onchange: e => { r.active = e.target.checked; } }), 'Показывать'),
+        rows.length > 1 ? el('button', { type: 'button', class: 'b sq', 'aria-label': 'Убрать строку', onclick: () => { rows.splice(i, 1); render(); } }, '✕') : null)),
+      el('button', { type: 'button', class: 'b', onclick: () => { rows.push({ label: '', url: '', active: true }); render(); } }, '+ Ещё один филиал'));
+  };
+
+  return [
+    el('a', { class: 'back', href: '#', style: 'color:var(--muted);text-decoration:none;display:inline-block;margin-bottom:12px',
+      onclick: e => { e.preventDefault(); form = null; err = ''; render(); } }, '← К списку'),
+    el('h1', {}, d.id ? 'Изменить заведение' : 'Новое заведение'),
+    el('label', { class: 'f' }, 'Название'),
+    el('input', { type: 'text', placeholder: 'Например: Караколка', value: d.name, oninput: e => { d.name = e.target.value; } }),
+    el('label', { class: 'f' }, 'Город'),
+    el('select', { onchange: e => { d.city_id = e.target.value; } }, D.cities.map(c => el('option', { value: c.id, selected: c.id === d.city_id }, c.name_ru))),
+    el('details', {}, el('summary', {}, 'Название на кыргызском и английском (необязательно)'),
+      el('label', { class: 'f' }, 'По-кыргызски'),
+      el('input', { type: 'text', placeholder: 'Если пусто, будет как основное', value: d.name_ky, oninput: e => { d.name_ky = e.target.value; } }),
+      el('label', { class: 'f' }, 'По-английски'),
+      el('input', { type: 'text', placeholder: 'Если пусто, будет как основное', value: d.name_en, oninput: e => { d.name_en = e.target.value; } })),
+    el('label', { class: 'f' }, 'Логотип или фото (необязательно)'),
+    preview, fileInput,
+    el('h2', {}, 'Ссылки для отзывов'),
+    el('p', { class: 'help' }, 'Откройте заведение на нужной платформе, скопируйте ссылку из адресной строки и вставьте сюда. Платформы без ссылки оставьте пустыми, кнопки для них не появятся. Если у заведения несколько филиалов, добавьте строку на каждый и впишите адрес: гость выберет нужный из списка.'),
+    ...D.platforms.map(platformBlock),
+    el('label', { class: 'chk', style: 'margin:14px 0' }, el('input', { type: 'checkbox', checked: d.active, onchange: e => { d.active = e.target.checked; } }), 'Показывать на сайте'),
+    err ? el('div', { class: 'err' }, err) : null,
+    el('div', { class: 'row' },
+      el('button', { type: 'button', class: 'b main', onclick: saveVenue }, 'Сохранить'),
+      el('button', { type: 'button', class: 'b', onclick: () => { form = null; err = ''; render(); } }, 'Отмена'))
+  ];
+}
+
+async function saveVenue() {
+  const d = form.d, name = d.name.trim();
+  if (!name) { err = 'Введите название заведения.'; return render(); }
+  if (!d.city_id) { err = 'Выберите город.'; return render(); }
+  const links = [];
+  for (const p of D.platforms) {
+    const rows = d.links[p.id].map(r => ({ label: r.label.trim(), url: r.url.trim(), active: r.active })).filter(r => r.label || r.url);
+    if (rows.some(r => !isSafeUrl(r.url))) { err = 'Проверьте ссылки в блоке «' + p.name_ru + '»: нужна полная ссылка, которая начинается с https://'; return render(); }
+    rows.forEach((r, i) => links.push({ platform_id: p.id, label: r.label || null, url: r.url, sort: (i + 1) * 10, active: r.active }));
+  }
+  if (!links.length) { err = 'Добавьте хотя бы одну ссылку, иначе гостю нечего будет нажать.'; return render(); }
+
+  const row = { name, name_ky: d.name_ky.trim() || null, name_en: d.name_en.trim() || null, city_id: d.city_id,
+    logo_url: d.logo_url || null, active: d.active };
+  await run(async () => {
+    let id = d.id;
+    if (id) {
+      await api('PATCH', '/rest/v1/venues?id=eq.' + id, row);
+    } else {
+      const base = slugify(name) || 'venue';
+      let slug = base, saved = null;
+      for (let n = 2; n < 20 && !saved; n++) {
+        try { saved = await api('POST', '/rest/v1/venues', { ...row, slug, sort: nextSort(D.venues) }); }
+        catch (e) { if (e.code !== '23505') throw e; slug = base + '-' + n; }
+      }
+      if (!saved) throw new Error('Не удалось подобрать адрес для заведения. Измените название.');
+      id = saved[0].id;
+    }
+    await api('DELETE', '/rest/v1/venue_links?venue_id=eq.' + id);
+    await api('POST', '/rest/v1/venue_links', links.map(l => ({ ...l, venue_id: id })));
+    form = null;
+  }, 'Сохранено: «' + name + '». Заведение уже на сайте.');
+}
+
+/* ========== СТРАНЫ, ГОРОДА, ПЛАТФОРМЫ ========== */
+const ENT = {
+  countries: { title: 'Страны', one: 'страну', rows: () => D.countries, parent: null },
+  cities:    { title: 'Города', one: 'город', rows: () => D.cities, parent: { key: 'country_id', list: () => D.countries, label: 'Страна' } },
+  platforms: { title: 'Платформы', one: 'платформу', rows: () => D.platforms, parent: null }
+};
+
+function entityTab(name) {
+  const E = ENT[name], rows = E.rows();
+  const parentName = r => { if (!E.parent) return ''; const p = E.parent.list().find(x => x.id === r[E.parent.key]); return p ? p.name_ru : ''; };
+  const hints = { countries: 'Страна нужна, чтобы группировать города. Пока страна одна, гости её не видят. Когда добавите вторую, на главной появится выбор страны.',
+    cities: 'Город появляется на главной странице как кнопка. Скрытый город и его заведения гостям не показываются.',
+    platforms: 'Платформа это кнопка на странице заведения (2GIS, Google Maps и т.д.). Новую платформу можно добавить здесь, а ссылки на неё указать в каждом заведении.' };
+  return [
+    el('p', { class: 'help' }, hints[name]),
+    el('div', { class: 'row' }, el('button', { type: 'button', class: 'b main', onclick: () => {
+      if (E.parent && !E.parent.list().length) { err = 'Сначала добавьте страну во вкладке «Страны».'; return render(); }
+      form = { kind: 'entity', name, d: { id: null, name_ru: '', name_ky: '', name_en: '', parent: E.parent ? E.parent.list()[0].id : null } }; msg = ''; err = ''; render(); } }, '+ Добавить ' + E.one)),
+    rows.length ? rows.map((r, i) => el('div', { class: 'card' + (r.active ? '' : ' off') }, el('div', { class: 'vrow' },
+      el('div', { class: 'name' }, r.name_ru, el('small', {}, [parentName(r), r.active ? '' : 'скрыто с сайта'].filter(Boolean).join(' · ') || ' ')),
+      el('button', { type: 'button', class: 'b sq', 'aria-label': 'Выше', onclick: () => move(name, rows, rows, i, -1) }, '↑'),
+      el('button', { type: 'button', class: 'b sq', 'aria-label': 'Ниже', onclick: () => move(name, rows, rows, i, 1) }, '↓'),
+      el('button', { type: 'button', class: 'b', onclick: () => { form = { kind: 'entity', name, d: { id: r.id, name_ru: r.name_ru, name_ky: r.name_ky || '', name_en: r.name_en || '', parent: E.parent ? r[E.parent.key] : null } }; msg = ''; err = ''; render(); } }, 'Изменить'),
+      el('button', { type: 'button', class: 'b', onclick: () => toggle(name, r) }, r.active ? 'Скрыть' : 'Показать'),
+      el('button', { type: 'button', class: 'b danger', onclick: () => remove(name, r, r.name_ru) }, 'Удалить'))))
+      : el('p', { class: 'hint' }, 'Пока пусто.')
+  ];
+}
+
+function entityForm() {
+  const { name, d } = form, E = ENT[name];
+  return [
+    el('a', { href: '#', style: 'color:var(--muted);text-decoration:none;display:inline-block;margin-bottom:12px',
+      onclick: e => { e.preventDefault(); form = null; err = ''; render(); } }, '← Назад'),
+    el('h1', {}, (d.id ? 'Изменить ' : 'Добавить ') + E.one),
+    E.parent ? [el('label', { class: 'f' }, E.parent.label),
+      el('select', { onchange: e => { d.parent = e.target.value; } }, E.parent.list().map(p => el('option', { value: p.id, selected: p.id === d.parent }, p.name_ru)))] : null,
+    el('label', { class: 'f' }, 'Название'),
+    el('input', { type: 'text', value: d.name_ru, oninput: e => { d.name_ru = e.target.value; } }),
+    el('details', {}, el('summary', {}, 'Названия на кыргызском и английском (необязательно)'),
+      el('label', { class: 'f' }, 'По-кыргызски'),
+      el('input', { type: 'text', value: d.name_ky, oninput: e => { d.name_ky = e.target.value; } }),
+      el('label', { class: 'f' }, 'По-английски'),
+      el('input', { type: 'text', value: d.name_en, oninput: e => { d.name_en = e.target.value; } })),
+    err ? el('div', { class: 'err' }, err) : null,
+    el('div', { class: 'row' },
+      el('button', { type: 'button', class: 'b main', onclick: saveEntity }, 'Сохранить'),
+      el('button', { type: 'button', class: 'b', onclick: () => { form = null; err = ''; render(); } }, 'Отмена'))
+  ];
+}
+
+async function saveEntity() {
+  const { name, d } = form, E = ENT[name], title = d.name_ru.trim();
+  if (!title) { err = 'Введите название.'; return render(); }
+  const row = { name_ru: title, name_ky: d.name_ky.trim() || null, name_en: d.name_en.trim() || null };
+  if (E.parent) row[E.parent.key] = d.parent;
+  await run(async () => {
+    if (d.id) await api('PATCH', '/rest/v1/' + name + '?id=eq.' + d.id, row);
+    else {
+      const body = { ...row, sort: nextSort(E.rows()) };
+      if (name === 'platforms') {
+        const base = slugify(d.name_en || title) || 'platform';
+        let key = base, saved = null;
+        for (let n = 2; n < 20 && !saved; n++) {
+          try { saved = await api('POST', '/rest/v1/platforms', { ...body, key }); }
+          catch (e) { if (e.code !== '23505') throw e; key = base + '-' + n; }
+        }
+        if (!saved) throw new Error('Не удалось сохранить платформу. Измените название.');
+      } else await api('POST', '/rest/v1/' + name, body);
+    }
+    form = null;
+  }, 'Сохранено: «' + title + '».');
+}
+
+/* ========== РЕЗЕРВНАЯ КОПИЯ ========== */
+function backupTab() {
+  return [
+    el('p', { class: 'help' }, 'Резервная копия это один файл со всеми странами, городами, платформами, заведениями и ссылками. Скачивайте его время от времени и после больших изменений, а хранить лучше в нескольких местах (почта, облако).'),
+    el('div', { class: 'row' }, el('button', { type: 'button', class: 'b main', onclick: () => {
+      const blob = new Blob([JSON.stringify({ saved_at: new Date().toISOString(), ...D }, null, 2)], { type: 'application/json' });
+      const a = el('a', { href: URL.createObjectURL(blob), download: 'apex-backup-' + new Date().toISOString().slice(0, 10) + '.json' });
+      document.body.append(a); a.click(); a.remove();
+    } }, 'Скачать резервную копию')),
+    el('p', { class: 'help' }, 'Чтобы восстановить данные из файла, обратитесь к разработчику.')
+  ];
+}
+
+/* ========== ОБЩИЙ КАРКАС ========== */
+const TABS = [['venues', 'Заведения'], ['cities', 'Города'], ['countries', 'Страны'], ['platforms', 'Платформы'], ['backup', 'Резервная копия']];
+
+function render() {
+  if (location.hash !== '#/admin') return;
+  $('top').replaceChildren(
+    el('img', { src: LOGO, alt: 'Apex' }),
+    session ? el('div', { class: 'who' }, session.email || '', el('button', { type: 'button', class: 'b', onclick: logout }, 'Выйти')) : null);
+
+  const root = $('page');
+  if (!configured()) return root.replaceChildren(el('div', { class: 'err' }, 'Панель ещё не подключена к базе. Откройте файл config.js и вставьте адрес проекта и публичный ключ (см. SETUP.md).'));
+  if (!session) return root.replaceChildren(loginView());
+
+  if (form) return root.replaceChildren(...(form.kind === 'venue' ? venueForm() : entityForm()).flat().filter(Boolean));
+
+  const body = tab === 'venues' ? venuesTab() : tab === 'backup' ? backupTab() : entityTab(tab);
+  root.replaceChildren(
+    el('h1', {}, 'Панель администратора'),
+    el('div', { class: 'tabs' }, TABS.map(([id, label]) =>
+      el('button', { type: 'button', class: 'tab' + (tab === id ? ' on' : ''), onclick: () => { tab = id; msg = ''; err = ''; render(); } }, label))),
+    msg ? el('div', { class: 'ok' }, msg) : null,
+    err ? el('div', { class: 'err' }, err) : null,
+    ...body.flat().filter(Boolean));
+}
+
+let loaded = false;
+function enter() {
+  const on = location.hash === '#/admin';
+  document.body.classList.toggle('admin', on);
+  if (!on) return;
+  if (configured() && session && !loaded) { loaded = true; run(async () => {}); }
+  render();
+}
+window.addEventListener('hashchange', enter);
+enter();
+
+})();
 </script>
 </body>
 </html>
-
-

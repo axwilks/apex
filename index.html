@@ -154,6 +154,10 @@ body:not(.admin) footer a:hover{color:#fff}
 .stars svg{width:28px;height:28px;display:block;filter:drop-shadow(0 1px 1px rgba(160,110,0,.35));animation:star .55s var(--ease) both;animation-delay:calc(var(--i)*70ms)}
 @keyframes star{from{opacity:0;transform:translateY(6px) scale(.6)}to{opacity:1;transform:none}}
 @media (max-width:480px){.logo img{height:66px}.stars svg{width:26px;height:26px}}
+/* центрирование заголовка, подзаголовка и звёзд */
+body:not(.admin) #page h1,body:not(.admin) #page .sub{text-align:center;margin-left:auto;margin-right:auto}
+body:not(.admin) #page .stars{justify-content:center;margin-left:auto;margin-right:auto}
+body:not(.admin) #page .hero-mono{margin-left:auto;margin-right:auto}
 /* ---- панель администратора ---- */
 body.admin footer{display:none}
 body.admin .wrap{width:100%;max-width:760px;margin:0 auto;padding:0 20px}
@@ -708,7 +712,7 @@ function homePage() {
   function fillList() {
     list.replaceChildren();
     const term = query.trim().toLowerCase();
-    if (!city && !term) { list.append(el('p', { class: 'hint' }, t('hint'))); return; }
+    if (!city && !term) return;
     const cityById = new Map(DATA.cities.map(c => [c.id, c]));
     const found = DATA.venues.filter(v => {
       if (city && v.city !== city) return false;
